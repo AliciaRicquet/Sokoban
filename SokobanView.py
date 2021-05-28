@@ -3,6 +3,7 @@ from PyQt5.QtWidgets import QMainWindow
 
 class SokobanView(QMainWindow):
     def __init__(self):
+        super().__init__()
         self.controller = None
         self.model = None
 
