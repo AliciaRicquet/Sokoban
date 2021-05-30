@@ -16,5 +16,5 @@ controller.setModel(model)
 controller.addView(view)
 model.addView(view)
 
-view.setWindowTitle("Dessin")
+view.setWindowTitle("Sokoban Empire des A2")
 sys.exit(app.exec_())
