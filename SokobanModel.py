@@ -13,6 +13,8 @@ class SokobanModel:
     def setCoordoneePerso(self, x, y):
         self.coordoneePerso = (x, y)
 
+    def getCoordonneePerso(self):
+        return self.coordoneePerso
     def addView(self, views):
         self.views.append(views)
 
