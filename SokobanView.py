@@ -13,7 +13,6 @@ class SokobanView1(QMainWindow):
     def setModel(self, model):
         self.model = model
 
-
 class SokobanView2(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -25,3 +24,5 @@ class SokobanView2(QMainWindow):
 
     def setModel(self, model):
         self.model = model
+
+
