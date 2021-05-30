@@ -16,8 +16,8 @@ class SokobanModel:
     def addView(self, views):
         self.views.append(views)
 
-    def timeEvent(self, number):
-        self.views[number].update()
+    def timeEvent(self, numberOfView):
+        self.views[numberOfView].update()
 
     def upMovement(self):
         self.setCoordoneePerso(self.coordoneePerso[0], self.coordoneePerso[1] - self.vitesseDeplacement)
