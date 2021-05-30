@@ -15,6 +15,7 @@ class SokobanModel:
 
     def getCoordonneePerso(self):
         return self.coordoneePerso
+
     def addView(self, views):
         self.views.append(views)
 
@@ -47,5 +48,3 @@ class SokobanModel:
 
     def moveLeftCaisse(self, numCaisse):
         self.caisses[numCaisse] = (self.caisses[numCaisse][0] - self.vitesseDeplacement, self.caisses[numCaisse][1])
-
-
