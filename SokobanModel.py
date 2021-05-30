@@ -31,7 +31,19 @@ class SokobanModel:
     def leftMovement(self):
         self.setCoordoneePerso(self.coordoneePerso[0] - self.vitesseDeplacement, self.coordoneePerso[1])
 
-    def addCaisse(self,coordonee):
+    def addCaisse(self, coordonee):
         self.caisses.append(coordonee)
+
+    def moveUpCaisse(self, numCaisse):
+        self.caisses[numCaisse] = (self.caisses[numCaisse][0], self.caisses[numCaisse][1] - self.vitesseDeplacement)
+
+    def moveDownCaisse(self, numCaisse):
+        self.caisses[numCaisse] = (self.caisses[numCaisse][0], self.caisses[numCaisse][1] + self.vitesseDeplacement)
+
+    def moveRightCaisse(self, numCaisse):
+        self.caisses[numCaisse] = (self.caisses[numCaisse][0] + self.vitesseDeplacement, self.caisses[numCaisse][1])
+
+    def moveLeftCaisse(self, numCaisse):
+        self.caisses[numCaisse] = (self.caisses[numCaisse][0] - self.vitesseDeplacement, self.caisses[numCaisse][1])
 
 
