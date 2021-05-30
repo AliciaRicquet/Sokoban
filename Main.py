@@ -16,6 +16,5 @@ controller.setModel(model)
 controller.addView(view)
 model.addView(view)
 
-view.recupererTab(10)
 view.setWindowTitle("Dessin")
 sys.exit(app.exec_())
