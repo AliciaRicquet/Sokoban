@@ -14,3 +14,4 @@ class SokobanView(QMainWindow):
         self.model = model
 
 
+
