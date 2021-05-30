@@ -7,7 +7,7 @@ class SokobanModel:
         self.timer = QTimer()
         self.timer.timeout.connect(self.timeEvent)
         self.coordoneePerso = (0, 0)
-        self.deplacement = 10
+        self.vitesseDeplacement = 10
         self.caisses = []
 
     def setCoordoneePerso(self, x, y):
@@ -20,16 +20,16 @@ class SokobanModel:
         self.views[number].update()
 
     def upMovement(self):
-        self.setCoordoneePerso(self.coordoneePerso[0],self.coordoneePerso[1]-self.deplacement)
+        self.setCoordoneePerso(self.coordoneePerso[0], self.coordoneePerso[1] - self.vitesseDeplacement)
 
     def downMovement(self):
-        self.setCoordoneePerso(self.coordoneePerso[0],self.coordoneePerso[1]+self.deplacement)
+        self.setCoordoneePerso(self.coordoneePerso[0], self.coordoneePerso[1] + self.vitesseDeplacement)
 
     def rightMovement(self):
-        self.setCoordoneePerso(self.coordoneePerso[0]+self.deplacement,self.coordoneePerso[1])
+        self.setCoordoneePerso(self.coordoneePerso[0] + self.vitesseDeplacement, self.coordoneePerso[1])
 
     def leftMovement(self):
-        self.setCoordoneePerso(self.coordoneePerso[0]-self.deplacement,self.coordoneePerso[1])
+        self.setCoordoneePerso(self.coordoneePerso[0] - self.vitesseDeplacement, self.coordoneePerso[1])
 
     def addCaisse(self,coordonee):
         self.caisses.append(coordonee)
