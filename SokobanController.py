@@ -1,4 +1,11 @@
 class SokobanController:
+    """
+    TODO
+    - fonction changement de direction
+    - mise en place timer  et mise a jour du model
+    - gestion des evenements de la vue et gerer deplacement caisse
+    PS: hesitez pas a ajouter des idéee
+    """
     def __init__(self):
         self.model = None
         self.views = []

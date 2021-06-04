@@ -4,6 +4,13 @@ from PyQt5.QtWidgets import QMainWindow
 
 
 class SokobanView1(QMainWindow):
+    """
+    TODO
+    - LevelDesign et dessin
+    - gerer les deplacement
+    - dessin persos
+    PS: hesitez pas a ajouter des idéee
+    """
     def __init__(self):
         super().__init__()
         self.SokobanController = None
@@ -31,5 +38,5 @@ class SokobanView1(QMainWindow):
             print((-1,0))
         elif e.key() == Qt.Key_Left:
             self.SokobanController.changeDirection((1, 0))
-            print((1,0))
+            print((1 ,0))
 
