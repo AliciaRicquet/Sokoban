@@ -1,3 +1,4 @@
+from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPainter
 from PyQt5.QtWidgets import QMainWindow
 
@@ -5,11 +6,11 @@ from PyQt5.QtWidgets import QMainWindow
 class SokobanView1(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.controller = None
+        self.SokobanController = None
         self.model = None
 
     def setController(self, controller):
-        self.controller = controller
+        self.SokobanController = controller
 
     def setModel(self, model):
         self.model = model
@@ -23,12 +24,12 @@ class SokobanView1(QMainWindow):
             self.SokobanController.changeDirection((0,-1))
             print((0,-1))
         elif e.key() == Qt.Key_Down:
-            self.controller.changeDirection((0,1))
+            self.SokobanController.changeDirection((0, 1))
             print((0,1))
         elif e.key() == Qt.Key_Right:
-            self.controller.changeDirection((-1,0))
+            self.SokobanController.changeDirection((-1, 0))
             print((-1,0))
         elif e.key() == Qt.Key_Left:
-            self.controller.changeDirection((1,0))
+            self.SokobanController.changeDirection((1, 0))
             print((1,0))
 

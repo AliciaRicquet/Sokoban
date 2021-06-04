@@ -9,6 +9,7 @@ class SokobanModel:
         self.coordoneePerso = (0, 0)
         self.vitesseDeplacement = 10
         self.caisses = []
+        self.direction = (0,1)
 
     def setCoordoneePerso(self, x, y):
         self.coordoneePerso = (x, y)
