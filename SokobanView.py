@@ -29,6 +29,7 @@ class SokobanView1(QMainWindow):
         self.model = model
 
     def paintEvent(self, event):
+        print(self.model.getMatrix())
         painter = QPainter(self)
         painter.drawRect(self.model.getCoordonneePerso()[0],self.model.getCoordonneePerso()[1],30,30)
 

@@ -10,7 +10,7 @@ class SokobanModel:
         self.vitesseDeplacement = 10
         self.caisses = []
         self.direction = (0, 1)
-        self.matrix = [[[''] for i in range(h)] for j in range(w)]
+        self.matrix = [[[0] for i in range(h)] for j in range(w)]
 
     def setCoordoneePerso(self, x, y):
         self.coordoneePerso = (x, y)
