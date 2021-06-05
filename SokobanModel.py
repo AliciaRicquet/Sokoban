@@ -11,6 +11,7 @@ class SokobanModel:
         self.caisses = []
         self.direction = (0, 1)
         self.matrix = [[[0] for i in range(h)] for j in range(w)]
+        self.level = 0
 
     def setCoordoneePerso(self, x, y):
         self.coordoneePerso = (x, y)
@@ -42,6 +43,11 @@ class SokobanModel:
     def moveLeftCaisse(self, numCaisse):
         self.caisses[numCaisse] = (self.caisses[numCaisse][0] - self.vitesseDeplacement, self.caisses[numCaisse][1])
     '''
+    def getLevel(self):
+        return self.level
+
+    def setLevel(self,number):
+        self.level = number
 
     def getMatrix(self):
         return self.matrix
