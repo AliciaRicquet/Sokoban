@@ -4,6 +4,7 @@ class SokobanController:
     - fonction changement de direction
     - mise en place timer  et mise a jour du model
     - gestion des evenements de la vue et gerer deplacement caisse
+    - methode pour ajouter les differentes valeur a la matrice : 0 = case libre , 1 = joueur,, 2 = mur, 3 = trou(objectif rien de personnel hein)
     PS: hesitez pas a ajouter des idéee
     """
     def __init__(self):
