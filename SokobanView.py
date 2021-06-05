@@ -15,6 +15,7 @@ class SokobanView1(QMainWindow):
     - bruit de caisse qui bouge
     - bruit de caisse dans le trou
     - musique de victoire avec ecran de victoire
+    fonctionnement matrice = 0 = case libre   1 = joueur,, 2 = mur, 3 = trou(objectif rien de personnel hein)
     """
     def __init__(self):
         super().__init__()
