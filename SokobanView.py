@@ -9,6 +9,7 @@ class SokobanView1(QMainWindow):
     - LevelDesign et dessin
     - gerer les deplacement
     - dessin persos
+    - mettre a jour la matrice
     PS: hesitez pas a ajouter des idéee
     """
     def __init__(self):

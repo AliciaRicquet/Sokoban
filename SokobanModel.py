@@ -2,14 +2,15 @@ from PyQt5.QtCore import QTimer
 
 
 class SokobanModel:
-    def __init__(self):
+    def __init__(self, h, w):
         self.views = []
         self.timer = QTimer()
         self.timer.timeout.connect(self.timeEvent)
         self.coordoneePerso = (0, 0)
         self.vitesseDeplacement = 10
         self.caisses = []
-        self.direction = (0,1)
+        self.direction = (0, 1)
+        self.matrix = [[[''] for i in range(h)] for j in range(w)]
 
     def setCoordoneePerso(self, x, y):
         self.coordoneePerso = (x, y)
@@ -28,7 +29,8 @@ class SokobanModel:
 
     def addCaisse(self, coordonee):
         self.caisses.append(coordonee)
-    def moveUpCaisse(self, numCaisse):
+
+    '''def moveUpCaisse(self, numCaisse):
         self.caisses[numCaisse] = (self.caisses[numCaisse][0], self.caisses[numCaisse][1] - self.vitesseDeplacement)
 
     def moveDownCaisse(self, numCaisse):
@@ -39,3 +41,8 @@ class SokobanModel:
 
     def moveLeftCaisse(self, numCaisse):
         self.caisses[numCaisse] = (self.caisses[numCaisse][0] - self.vitesseDeplacement, self.caisses[numCaisse][1])
+    '''
+
+    def getMatrix(self):
+        return self.matrix
+
