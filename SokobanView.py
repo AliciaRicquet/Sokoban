@@ -10,6 +10,10 @@ class SokobanView1(QMainWindow):
     - gerer les deplacement
     - dessin persos
     PS: hesitez pas a ajouter des idéee
+    - rajouter musique de fond
+    - bruit de caisse qui bouge
+    - bruit de caisse dans le trou
+    - musique de victoire avec ecran de victoire
     """
     def __init__(self):
         super().__init__()
