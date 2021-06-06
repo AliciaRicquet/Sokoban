@@ -9,7 +9,7 @@ class SokobanModel:
         self.views = []
         self.timer = QTimer()
         self.timer.timeout.connect(self.timeEvent)
-        self.coordoneePerso = (0, 0)
+
         self.vitesseDeplacement = 10
         self.caisses = []
         self.direction = (0, 1)
@@ -25,9 +25,7 @@ class SokobanModel:
                 [0, 0, 0, 2, 3, 2, 0, 0],
                 [0, 0, 0, 2, 2, 2, 0, 0]
             ]
-
-    def setCoordoneePerso(self, x, y):
-        self.coordoneePerso = (x, y)
+            self.coordoneePerso = (3, 4)
 
     def getCoordonneePerso(self):
         return self.coordoneePerso
