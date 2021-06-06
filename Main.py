@@ -7,7 +7,7 @@ from PyQt5.QtWidgets import QApplication
 
 app = QApplication(sys.argv)
 view = SokobanView1()
-model = SokobanModel(10,10)
+model = SokobanModel(1)
 controller = SokobanController()
 view.show()
 view.setModel(model)
