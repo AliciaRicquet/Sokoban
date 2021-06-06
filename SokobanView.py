@@ -22,11 +22,14 @@ class SokobanView1(QMainWindow):
         self.SokobanController = None
         self.model = None
 
+
     def setController(self, controller):
         self.SokobanController = controller
 
     def setModel(self, model):
         self.model = model
+        self.setFixedSize(len(self.model.getMatrix()[0]*30),len(self.model.getMatrix()*30))
+
 
     def paintEvent(self, event):
         print(self.model.getMatrix())
