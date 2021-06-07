@@ -1,6 +1,6 @@
 from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QPainter
-from PyQt5.QtWidgets import QMainWindow
+from PyQt5.QtGui import QPainter, QPixmap
+from PyQt5.QtWidgets import QMainWindow, QLabel
 
 
 class SokobanView1(QMainWindow):
@@ -35,6 +35,9 @@ class SokobanView1(QMainWindow):
         print(self.model.getMatrix())
         painter = QPainter(self)
         painter.drawRect(self.model.getCoordonneePerso()[0],self.model.getCoordonneePerso()[1],30,30)
+        label = QLabel(self)
+        pixmap = QPixmap('image.jpeg')
+        label.setPixmap(pixmap)
 
     def keyPressEvent(self, e):
         if e.key() == Qt.Key_Up:
