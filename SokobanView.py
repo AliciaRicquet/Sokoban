@@ -1,6 +1,6 @@
 from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QPainter, QPixmap
-from PyQt5.QtWidgets import QMainWindow, QLabel
+from PyQt5.QtGui import QPainter
+from PyQt5.QtWidgets import QMainWindow
 
 
 class SokobanView1(QMainWindow):
@@ -22,34 +22,28 @@ class SokobanView1(QMainWindow):
         self.SokobanController = None
         self.model = None
 
-
     def setController(self, controller):
         self.SokobanController = controller
 
     def setModel(self, model):
         self.model = model
-        self.setFixedSize(len(self.model.getMatrix()[0]*30),len(self.model.getMatrix()*30))
-
+        self.setFixedSize(len(self.model.getMatrix()[0] * 30), len(self.model.getMatrix() * 30))
 
     def paintEvent(self, event):
         print(self.model.getMatrix())
         painter = QPainter(self)
-        painter.drawRect(self.model.getCoordonneePerso()[0],self.model.getCoordonneePerso()[1],30,30)
-        label = QLabel(self)
-        pixmap = QPixmap('image.jpeg')
-        label.setPixmap(pixmap)
+        painter.drawRect(self.model.getCoordonneePerso()[0], self.model.getCoordonneePerso()[1], 30, 30)
 
     def keyPressEvent(self, e):
         if e.key() == Qt.Key_Up:
-            self.SokobanController.changeDirection((0,-1))
-            print((0,-1))
+            self.SokobanController.changeDirection((0, -1))
+            print((0, -1))
         elif e.key() == Qt.Key_Down:
             self.SokobanController.changeDirection((0, 1))
-            print((0,1))
+            print((0, 1))
         elif e.key() == Qt.Key_Right:
             self.SokobanController.changeDirection((-1, 0))
-            print((-1,0))
+            print((-1, 0))
         elif e.key() == Qt.Key_Left:
             self.SokobanController.changeDirection((1, 0))
-            print((1 ,0))
-
+            print((1, 0))
