@@ -1,5 +1,5 @@
 from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QPainter, QPixmap
+from PyQt5.QtGui import QPainter, QPixmap, QImage, QIcon
 from PyQt5.QtWidgets import QMainWindow,QGridLayout
 from SokobanModel import *
 
