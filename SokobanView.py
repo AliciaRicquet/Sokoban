@@ -1,7 +1,7 @@
 from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QPainter
-from PyQt5.QtWidgets import QMainWindow
-
+from PyQt5.QtGui import QPainter, QPixmap
+from PyQt5.QtWidgets import QMainWindow,QGridLayout
+from SokobanModel import *
 
 class SokobanView1(QMainWindow):
     """
@@ -21,6 +21,19 @@ class SokobanView1(QMainWindow):
         super().__init__()
         self.SokobanController = None
         self.model = None
+        joueur = QImage("./sprites/perso_bas.png", 'png').copy(370, 0, 400, 350)
+        caisse_valide = QImage("./sprites/caisse_valide1.png", 'png').copy(30, 0, 400, 350)
+        caisse_valide2= QImage("./sprites/caisse_valide2.png", 'png').copy(30, 0, 400, 350)
+        caisse_valide3= QImage("./sprites/caisse_valide3.png", 'png').copy(30, 0, 400, 350)
+        caisse_valide4= QImage("./sprites/caisse_valide4.png", 'png').copy(30, 0, 400, 350)
+        caisse_valide5= QImage("./sprites/caisse_valide5.png", 'png').copy(30, 0, 400, 350)
+        mur= QImage("./sprites/mur1.png", 'png').copy(30, 0, 400, 350)
+        mur2= QImage("./sprites/mur2.png", 'png').copy(30, 0, 400, 350)
+        mur3= QImage("./sprites/mur3.png", 'png').copy(30, 0, 400, 350)
+        mur4= QImage("./sprites/mur4.png", 'png').copy(30, 0, 400, 350)
+
+        self.__cross = QIcon(QPixmap.fromImage(crossImage).scaled(w, h))
+        self.__round = QIcon(QPixmap.fromImage(roundImage).scaled(w, h))
 
     def setController(self, controller):
         self.SokobanController = controller
@@ -28,11 +41,17 @@ class SokobanView1(QMainWindow):
     def setModel(self, model):
         self.model = model
         self.setFixedSize(len(self.model.getMatrix()[0] * 30), len(self.model.getMatrix() * 30))
+        self.gridLayout= QGridLayout()
+        for i in range (len(self.matrix)):
+            for j in range(len(self.matrix[i])):
+                if self.matrix[i][j] == 0:
+                    button.setStyleSheet(
+                        "background-color:rgb(127,127,127)")
+                elif self.matrix[i][j] == 1 :
+                    QPixmap joueur("/photo.png");
 
-    def paintEvent(self, event):
-        print(self.model.getMatrix())
-        painter = QPainter(self)
-        painter.drawRect(self.model.getCoordonneePerso()[0], self.model.getCoordonneePerso()[1], 30, 30)
+
+
 
     def keyPressEvent(self, e):
         if e.key() == Qt.Key_Up:
