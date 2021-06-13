@@ -19,8 +19,8 @@ class SokobanView1(QMainWindow):
     """
     def __init__(self):
         super().__init__()
-        self.SokobanController = None
-        self.model = None
+        self.__SokobanController = None
+        self.__model = None
         joueur = QImage("./sprites/perso_bas.png", 'png').copy(370, 0, 400, 350)
         caisse_valide = QImage("./sprites/caisse_valide1.png", 'png').copy(30, 0, 400, 350)
         caisse_valide2= QImage("./sprites/caisse_valide2.png", 'png').copy(30, 0, 400, 350)
@@ -36,11 +36,11 @@ class SokobanView1(QMainWindow):
         self.__round = QIcon(QPixmap.fromImage(roundImage).scaled(w, h))
 
     def setController(self, controller):
-        self.SokobanController = controller
+        self.__SokobanController = controller
 
     def setModel(self, model):
-        self.model = model
-        self.setFixedSize(len(self.model.getMatrix()[0] * 30), len(self.model.getMatrix() * 30))
+        self.__model = model
+        self.setFixedSize(len(self.__model.getMatrix()[0] * 30), len(self.__model.getMatrix() * 30))
         self.gridLayout= QGridLayout()
         for i in range (len(self.matrix)):
             for j in range(len(self.matrix[i])):
@@ -55,14 +55,14 @@ class SokobanView1(QMainWindow):
 
     def keyPressEvent(self, e):
         if e.key() == Qt.Key_Up:
-            self.SokobanController.changeDirection((0, -1))
+            self.__SokobanController.changeDirection((0, -1))
             print((0, -1))
         elif e.key() == Qt.Key_Down:
-            self.SokobanController.changeDirection((0, 1))
+            self.__SokobanController.changeDirection((0, 1))
             print((0, 1))
         elif e.key() == Qt.Key_Right:
-            self.SokobanController.changeDirection((-1, 0))
+            self.__SokobanController.changeDirection((-1, 0))
             print((-1, 0))
         elif e.key() == Qt.Key_Left:
-            self.SokobanController.changeDirection((1, 0))
+            self.__SokobanController.changeDirection((1, 0))
             print((1, 0))
