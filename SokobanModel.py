@@ -42,6 +42,13 @@ class SokobanModel:
     def addCaisse(self, coordonee):
         self.caisses.append(coordonee)
 
+    def getDirection(self):
+        return self.direction
+
+    def setDirection(self, direction):
+        self.direction = direction
+
+
     '''def moveUpCaisse(self, numCaisse):
         self.caisses[numCaisse] = (self.caisses[numCaisse][0], self.caisses[numCaisse][1] - self.vitesseDeplacement)
 
