@@ -1,3 +1,5 @@
+from random import randint
+
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPainter, QPixmap
 from PyQt5.QtWidgets import QMainWindow,QGridLayout
@@ -22,15 +24,21 @@ class SokobanView1(QMainWindow):
         self.SokobanController = None
         self.model = None
         joueur = QImage("./sprites/perso_bas.png", 'png').copy(370, 0, 400, 350)
-        caisse_valide = QImage("./sprites/caisse_valide1.png", 'png').copy(30, 0, 400, 350)
-        caisse_valide2= QImage("./sprites/caisse_valide2.png", 'png').copy(30, 0, 400, 350)
-        caisse_valide3= QImage("./sprites/caisse_valide3.png", 'png').copy(30, 0, 400, 350)
-        caisse_valide4= QImage("./sprites/caisse_valide4.png", 'png').copy(30, 0, 400, 350)
-        caisse_valide5= QImage("./sprites/caisse_valide5.png", 'png').copy(30, 0, 400, 350)
-        mur= QImage("./sprites/mur1.png", 'png').copy(30, 0, 400, 350)
-        mur2= QImage("./sprites/mur2.png", 'png').copy(30, 0, 400, 350)
-        mur3= QImage("./sprites/mur3.png", 'png').copy(30, 0, 400, 350)
-        mur4= QImage("./sprites/mur4.png", 'png').copy(30, 0, 400, 350)
+        if randint(1,5) == 1 :
+            caisse_valide = QImage("./sprites/caisse_valide1.png", 'png').copy(30, 0, 400, 350)
+        elif randint(1,5) == 2 :
+            caisse_valide2= QImage("./sprites/caisse_valide2.png", 'png').copy(30, 0, 400, 350)
+        elif randint(1,5) == 3 :
+            caisse_valide3= QImage("./sprites/caisse_valide3.png", 'png').copy(30, 0, 400, 350)
+        elif randint(1,5) == 4 :
+            caisse_valide4= QImage("./sprites/caisse_valide4.png", 'png').copy(30, 0, 400, 350)
+        elif randint(1,5) == 5 :
+            caisse_valide5= QImage("./sprites/caisse_valide5.png", 'png').copy(30, 0, 400, 350)
+
+            mur= QImage("./sprites/mur1.png", 'png').copy(30, 0, 400, 350)
+            mur2= QImage("./sprites/mur2.png", 'png').copy(30, 0, 400, 350)
+            mur3= QImage("./sprites/mur3.png", 'png').copy(30, 0, 400, 350)
+            mur4= QImage("./sprites/mur4.png", 'png').copy(30, 0, 400, 350)
 
         self.__cross = QIcon(QPixmap.fromImage(crossImage).scaled(w, h))
         self.__round = QIcon(QPixmap.fromImage(roundImage).scaled(w, h))
