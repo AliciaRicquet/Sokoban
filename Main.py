@@ -2,11 +2,11 @@ import sys
 
 from SokobanController import SokobanController
 from SokobanModel import SokobanModel
-from SokobanView import SokobanView1
+from SokobanView import SokobanView
 from PyQt5.QtWidgets import QApplication
 
 app = QApplication(sys.argv)
-view = SokobanView1()
+view = SokobanView()
 model = SokobanModel(1)
 controller = SokobanController()
 view.show()
