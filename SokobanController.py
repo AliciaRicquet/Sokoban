@@ -13,6 +13,7 @@ class SokobanController:
         self.timer = QTimer()
         self.timer.timeout.connect(self.timeEvent)
         self.timer.start(60)
+        self.mur == False
 
     def setView(self, view):
         self.view = view
@@ -38,15 +39,13 @@ class SokobanController:
                                      self.model.getCoordoneePerso[1])
 
     def  verifMur(self):
-        mur = false
         matrice = self.model.getMatrix()
         for i in range(len(self.model.matrix)):
             for j in range(len(self.model.matrix[0])):
                 if matrice[i][j] == 3:
                     if self.model.getCoordoneePerso == matrice:
-                        mur == true
-                        return "il y a un mur la!"
-
+                        return True
+        return False
 
     def changerDirection(self, dir):
         if dir != (-self.model.getDirection()[0], -self.model.getDirection()[1]) and dir != self.verifMur():
@@ -59,6 +58,3 @@ class SokobanController:
             elif self.leftMovement():
                 self.model.setDirection(dir)
 
-    def timeEvent(self):
-        if not self.verifMur()():
-            self.model.direction()
