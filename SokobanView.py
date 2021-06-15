@@ -1,8 +1,9 @@
 from random import randint
 
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, QUrl, QDir
 from PyQt5.QtGui import QPixmap, QImage
-from PyQt5.QtWidgets import QMainWindow, QGridLayout, QLabel
+from PyQt5.QtMultimedia import QMediaPlaylist, QMediaContent, QMediaPlayer
+from PyQt5.QtWidgets import QMainWindow, QGridLayout, QLabel, QWidget
 
 
 class SokobanView(QMainWindow):
@@ -24,16 +25,27 @@ class SokobanView(QMainWindow):
         super().__init__()
         self.__SokobanController = None
         self.__model = None
-        self.__joueur = QImage("./sprites/perso_bas.png", 'png').copy(370, 0, 400, 350)
+        self.__window = QWidget()
+        self.setCentralWidget(self.__window)
+        self.__joueur = QImage("./sprites/perso_bas.png", 'png').copy(0, 0, 50, 50)
         selectionTexture = randint(1, 5)
-        self.__grid = QGridLayout(self)
+        self.__grid = QGridLayout()
+        self.__labelGrid = []
+        self.__window.setLayout(self.__grid)
         self.__matrix = None
+        self.playlist = QMediaPlaylist()
+        self.playlist.addMedia(QMediaContent(QUrl.fromLocalFile(
+            QDir.current().relativeFilePath("../son/musique1.mp3"))))
+        self.playlist.setPlaybackMode(QMediaPlaylist.Loop)
+        self.levelSound = QMediaPlayer()
+        self.levelSound.setPlaylist(self.playlist)
+
         if selectionTexture == 1:
-            self.__caisse_valide = QImage("./sprites/caisse_valide1.png", 'png').copy(30, 0, 400, 350)
+            self.__caisse_valide = QImage("./sprites/caisse_valide1.png", 'png').copy(30, 0, 0, 350)
             self.__mur = QImage("./sprites/mur1.png", 'png').copy(30, 0, 400, 350)
 
         elif selectionTexture == 2:
-            self.__caisse_valide = QImage("./sprites/caisse_valide2.png", 'png').copy(30, 0, 400, 350)
+            self.__caisse_valide = QImage("./sprites/caisse_valide2.png", 'png')
             self.__mur = QImage("./sprites/mur2.png", 'png').copy(30, 0, 400, 350)
 
         elif selectionTexture == 3:
@@ -46,7 +58,6 @@ class SokobanView(QMainWindow):
         elif selectionTexture == 5:
             self.__caisse_valide = QImage("./sprites/caisse_valide5.png", 'png').copy(30, 0, 400, 350)
             self.__mur = QImage("./sprites/mur5.png", 'png').copy(30, 0, 400, 350)
-        self.grid = QGridLayout()
 
     def setController(self, controller):
         self.__SokobanController = controller
@@ -62,15 +73,20 @@ class SokobanView(QMainWindow):
         joueur = QPixmap(self.__joueur)
         wall = QPixmap(self.__mur)
         for i in range(len(self.__matrix)):
+            tmp = []
             for j in range(len(self.__matrix[i])):
                 if self.__matrix[i][j] == 0:
-                    pass
+                    self.__grid.addWidget(label, i, j)
+                    tmp.append(label)
                 elif self.__matrix[i][j] == 1:
                     label.setPixmap(joueur)
                     self.__grid.addWidget(label, i, j)
+                    tmp.append(label)
                 elif self.__matrix[i][j] == 2:
                     label.setPixmap(wall)
                     self.__grid.addWidget(label, i, j)
+                    tmp.append(label)
+            self.__labelGrid.append(tmp)
 
     def keyPressEvent(self, e):
         if e.key() == Qt.Key_Up:
