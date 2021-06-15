@@ -10,9 +10,7 @@ class SokobanController:
     def __init__(self):
         self.model = None
         self.view = None
-        self.timer.timeout.connect(self.timeEvent)
-        self.timer.start(60)
-        self.mur == False
+        self.model.matrix()
 
     def setView(self, view):
         self.view = view
@@ -22,8 +20,8 @@ class SokobanController:
 
 
     def upMovement(self):
-        self.model.setCoordoneePerso(self.model.getCoordoneePerso[0], self.model.getCoordoneePerso[1]
-                                     - self.model.getVitesseDeplacement)
+       tmp = self.model.getCoordoneePerso()
+
 
     def downMovement(self):
         self.model.setCoordoneePerso(self.model.getCoordoneePerso[0], self.model.getCoordoneePerso[1] +
@@ -38,12 +36,14 @@ class SokobanController:
                                      self.model.getCoordoneePerso[1])
 
     def  verifMur(self):
+        dir = self.model.getDirection()
         matrice = self.model.getMatrix()
         for i in range(len(self.model.matrix)):
             for j in range(len(self.model.matrix[0])):
-                if matrice[i][j] == 3:
-                    if self.model.getCoordoneePerso == matrice:
-                        return True
+                if dir:
+                    if matrice[i][j] == 3:
+                        if self.model.getCoordoneePerso == matrice:
+                            return True
         return False
 
     def changerDirection(self, dir):
