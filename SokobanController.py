@@ -1,4 +1,4 @@
-from PyQt5.QtCore import QTimer
+
 
 class SokobanController:
     """
@@ -10,7 +10,6 @@ class SokobanController:
     def __init__(self):
         self.model = None
         self.view = None
-        self.timer = QTimer()
         self.timer.timeout.connect(self.timeEvent)
         self.timer.start(60)
         self.mur == False

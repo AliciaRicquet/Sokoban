@@ -1,4 +1,4 @@
-from PyQt5.QtCore import QTimer
+
 
 
 # 0 = case libre   1 = joueur,, 2 = mur, 3 = trou(objectif rien de personnel hein), 4 caisse
@@ -7,7 +7,6 @@ class SokobanModel:
         assert level == 1 or level == 2
 
         self.views = []
-        self.timer = QTimer()
         self.timer.timeout.connect(self.timeEvent)
 
         self.vitesseDeplacement = 10
