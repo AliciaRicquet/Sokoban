@@ -42,25 +42,25 @@ class SokobanView(QMainWindow):
         self.levelSound.setPlaylist(self.playlist)
         # configuration et choix des textures
         selectionTexture = randint(1, 5)
-        self.__joueur = QImage("./sprites/perso_bas.png", 'png').copy(0, 0, 50, 50)
+        self.__joueur = QImage("./sprites/perso_bas.png", 'png')
         if selectionTexture == 1:
-            self.__caisse_valide = QImage("./sprites/caisse_valide1.png", 'png').copy(30, 0, 0, 350)
-            self.__mur = QImage("./sprites/mur1.png", 'png').copy(30, 0, 400, 350)
+            self.__caisse_valide = QImage("./sprites/caisse_valide1.png", 'png')
+            self.__mur = QImage("./sprites/mur1.png", 'png')
 
         elif selectionTexture == 2:
             self.__caisse_valide = QImage("./sprites/caisse_valide2.png", 'png')
-            self.__mur = QImage("./sprites/mur2.png", 'png').copy(30, 0, 400, 350)
+            self.__mur = QImage("./sprites/mur2.png", 'png')
 
         elif selectionTexture == 3:
-            self.__caisse_valide = QImage("./sprites/caisse_valide3.png", 'png').copy(30, 0, 400, 350)
-            self.__mur = QImage("./sprites/mur3.png", 'png').copy(30, 0, 400, 350)
+            self.__caisse_valide = QImage("./sprites/caisse_valide3.png", 'png')
+            self.__mur = QImage("./sprites/mur3.png", 'png')
         elif selectionTexture == 4:
-            self.__caisse_valide = QImage("./sprites/caisse_valide4.png", 'png').copy(30, 0, 400, 350)
-            self.__mur = QImage("./sprites/mur4.png", 'png').copy(30, 0, 400, 350)
+            self.__caisse_valide = QImage("./sprites/caisse_valide4.png", 'png')
+            self.__mur = QImage("./sprites/mur4.png", 'png')
 
         elif selectionTexture == 5:
-            self.__caisse_valide = QImage("./sprites/caisse_valide5.png", 'png').copy(30, 0, 400, 350)
-            self.__mur = QImage("./sprites/mur5.png", 'png').copy(30, 0, 400, 350)
+            self.__caisse_valide = QImage("./sprites/caisse_valide5.png", 'png')
+            self.__mur = QImage("./sprites/mur5.png", 'png')
 
     def setController(self, controller):
         self.__SokobanController = controller
@@ -73,7 +73,7 @@ class SokobanView(QMainWindow):
         # recupération de la matrice du model
         matrix = self.__model.getMatrix()
         # configuration de la taille de la fenêtre
-        self.setFixedSize(len(matrix[0] * 100), len(matrix * 100))
+        #self.setFixedSize(len(matrix[0] * 100), len(matrix * 100))
         # w = self.width() / len(matrix)
         # h = self.height() / len(matrix[0])
 
