@@ -24,7 +24,7 @@ class SokobanController:
         print(perso[0],perso[1])
         if self.verifMurPerso(dir):
             self.model.setCoordoneePerso((perso[0], perso[1]))
-            self.model.update(self.model.getMatrix)
+            self.model.update(self.model.getMatrix())
         print(self.victoire())
         """beref, e
         """
