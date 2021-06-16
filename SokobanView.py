@@ -74,6 +74,8 @@ class SokobanView(QMainWindow):
         elif e.key() == Qt.Key_Left:
             self.__SokobanController.movement((1, 0))
             print((1, 0))
+        else:
+            return
 
     def update(self):
         matrix = self.__model.getMatrix()
