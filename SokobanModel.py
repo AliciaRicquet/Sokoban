@@ -2,7 +2,7 @@
 class SokobanModel:
     def __init__(self, level):
         assert level == 1 or level == 2
-
+        self.__controller = None
         self.__view = None
         self.caisses = []
         self.__trou = []
@@ -31,7 +31,7 @@ class SokobanModel:
                 [0, 2, 2, 2, 2, 2, 2, 2, 2]
             ]
         for x in range(len(self.matrix)):
-            for y in range (len(self.matrix[0])):
+            for y in range(len(self.matrix[0])):
                 if self.matrix[x][y] == 1:
                     self.coordonneePerso = (x, y)
                 elif self.matrix[x][y] == 4:
