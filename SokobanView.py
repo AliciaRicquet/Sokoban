@@ -36,7 +36,7 @@ class SokobanView(QMainWindow):
         # configuration de la musique
         self.playlist = QMediaPlaylist()
         self.playlist.addMedia(QMediaContent(QUrl.fromLocalFile(
-            QDir.current().relativeFilePath("../son/musique1.mp3"))))
+            QDir.current().absoluteFilePath("son/musique1.mp3"))))
         self.playlist.setPlaybackMode(QMediaPlaylist.Loop)
         self.levelSound = QMediaPlayer()
         self.levelSound.setPlaylist(self.playlist)
