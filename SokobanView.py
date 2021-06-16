@@ -86,6 +86,7 @@ class SokobanView(QMainWindow):
 
         imageJoueur = QImage("./sprites/perso_bas.png", 'png')
         imageTrou = QImage("./sprites/hole.png")
+        imageSol = QImage("sprites/ground_interior.png")
         if self.selectionTexture == 1:
             imageCaisse = QImage("./sprites/caisse_valide1.png", 'png')
             imageMur = QImage("./sprites/mur1.png", 'png')
@@ -105,6 +106,7 @@ class SokobanView(QMainWindow):
             imageCaisse = QImage("./sprites/caisse_valide5.png", 'png')
             imageMur = QImage("./sprites/mur5.png", 'png')
 
+
         # attribution de la texture au joueur au mur et a la caisse
         w = self.width() / len(matrix)
         h = self.height() / len(matrix[0])
@@ -113,11 +115,12 @@ class SokobanView(QMainWindow):
         wall = QPixmap(imageMur.scaled(w, h))
         caisse = QPixmap(imageCaisse.scaled(w, h))
         trou = QPixmap(imageTrou.scaled(w, h))
+        sol = QPixmap(imageSol.scaled(w,h))
         for i in range(len(matrix)):
             for j in range(len(matrix[i])):
                 label = QLabel()
-                if matrix[i][j] == 0:
-                    print(matrix[i][j])
+                if matrix[i][j] == 0 :
+                    label.setPixmap(sol)
                     self.__grid.addWidget(label, i, j)
                 elif matrix[i][j] == 1:
                     print(matrix[i][j])
