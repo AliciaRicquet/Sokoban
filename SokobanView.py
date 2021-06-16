@@ -40,7 +40,8 @@ class SokobanView(QMainWindow):
         self.playlist.setPlaybackMode(QMediaPlaylist.Loop)
         self.levelSound = QMediaPlayer()
         self.levelSound.setPlaylist(self.playlist)
-
+        # choix texture
+        self.selectionTexture = randint(1, 5)
 
     def setController(self, controller):
         self.__SokobanController = controller
@@ -58,40 +59,40 @@ class SokobanView(QMainWindow):
 
     def keyPressEvent(self, e):
         if e.key() == Qt.Key_Up:
-            self.__SokobanController.changeDirection((0, -1))
+            self.__SokobanController.movement((0, -1))
             print((0, -1))
         elif e.key() == Qt.Key_Down:
-            self.__SokobanController.changeDirection((0, 1))
+            self.__SokobanController.movement((0, 1))
             print((0, 1))
         elif e.key() == Qt.Key_Right:
-            self.__SokobanController.changeDirection((-1, 0))
+            self.__SokobanController.movement((-1, 0))
             print((-1, 0))
         elif e.key() == Qt.Key_Left:
-            self.__SokobanController.changeDirection((1, 0))
+            self.__SokobanController.movement((1, 0))
             print((1, 0))
 
     def update(self):
         matrix = self.__model.getMatrix()
         # configuration et choix des textures
-        selectionTexture = randint(1, 5)
+
         imageJoueur = QImage("./sprites/perso_bas.png", 'png')
         imageTrou = QImage("./sprites/hole.png")
-        if selectionTexture == 1:
+        if self.selectionTexture == 1:
             imageCaisse = QImage("./sprites/caisse_valide1.png", 'png')
             imageMur = QImage("./sprites/mur1.png", 'png')
 
-        elif selectionTexture == 2:
+        elif self.selectionTexture == 2:
             imageCaisse = QImage("./sprites/caisse_valide2.png", 'png')
             imageMur = QImage("./sprites/mur2.png", 'png')
 
-        elif selectionTexture == 3:
+        elif self.selectionTexture == 3:
             imageCaisse = QImage("./sprites/caisse_valide3.png", 'png')
             imageMur = QImage("./sprites/mur3.png", 'png')
-        elif selectionTexture == 4:
+        elif self.selectionTexture == 4:
             imageCaisse = QImage("./sprites/caisse_valide4.png", 'png')
             imageMur = QImage("./sprites/mur4.png", 'png')
 
-        elif selectionTexture == 5:
+        elif self.selectionTexture == 5:
             imageCaisse = QImage("./sprites/caisse_valide5.png", 'png')
             imageMur = QImage("./sprites/mur5.png", 'png')
 

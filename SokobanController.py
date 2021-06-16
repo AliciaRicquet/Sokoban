@@ -40,7 +40,7 @@ class SokobanController:
             return True
         return False
 
-    def changeDirection(self, dir):
+    def movement(self, dir):
         if self.verifMurPerso(dir):
             if self.upMovement():
                 self.model.setDirection(dir)
