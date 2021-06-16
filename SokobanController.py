@@ -18,20 +18,11 @@ class SokobanController:
         self.model = model
         self.__matrix = self.model.getMatrix()
 
-    def upMovement(self):
-        tmp = self.model.getCoordoneePerso()
-
-    def downMovement(self):
-        self.model.setCoordoneePerso(self.model.getCoordoneePerso[0], self.model.getCoordoneePerso[1] +
-                                     self.model.getVitesseDeplacement)
-
-    def rightMovement(self):
-        self.model.setCoordoneePerso(self.model.getCoordoneePerso[0] + self.model.getVitesseDeplacement,
-                                     self.model.getCoordoneePerso[1])
-
-    def leftMovement(self):
-        self.model.setCoordoneePerso(self.model.getCoordoneePerso[0] - self.model.getVitesseDeplacement,
-                                     self.model.getCoordoneePerso[1])
+    def movement(self, dir):
+        if self.verifMurPerso(dir):
+            self.model.setCoordoneePerso(self.model.getCoordoneePerso()[0] + dir[0], self.model.getCoordoneePerso()[1] + dir[1])
+            self.__matrix = [self.model.getCoordoneePerso()[0]][self.model.getCoordoneePerso()[1]]
+            self.update(self.__matrix)
 
     def verifMurPerso(self, dir):
         matrice = self.model.getMatrix()
@@ -39,14 +30,3 @@ class SokobanController:
         if matrice[cooPerso[0] + dir[0]][cooPerso[1] + dir[1]] != 2:
             return True
         return False
-
-    def changeDirection(self, dir):
-        if self.verifMurPerso(dir):
-            if self.upMovement():
-                self.model.setDirection(dir)
-            elif self.downMovement():
-                self.model.setDirection(dir)
-            elif self.rightMovement():
-                self.model.setDirection(dir)
-            elif self.leftMovement():
-                self.model.setDirection(dir)
