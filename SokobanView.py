@@ -40,27 +40,7 @@ class SokobanView(QMainWindow):
         self.playlist.setPlaybackMode(QMediaPlaylist.Loop)
         self.levelSound = QMediaPlayer()
         self.levelSound.setPlaylist(self.playlist)
-        # configuration et choix des textures
-        selectionTexture = randint(1, 5)
-        self.__joueur = QImage("./sprites/perso_bas.png", 'png')
-        if selectionTexture == 1:
-            self.__caisse_valide = QImage("./sprites/caisse_valide1.png", 'png')
-            self.__mur = QImage("./sprites/mur1.png", 'png')
 
-        elif selectionTexture == 2:
-            self.__caisse_valide = QImage("./sprites/caisse_valide2.png", 'png')
-            self.__mur = QImage("./sprites/mur2.png", 'png')
-
-        elif selectionTexture == 3:
-            self.__caisse_valide = QImage("./sprites/caisse_valide3.png", 'png')
-            self.__mur = QImage("./sprites/mur3.png", 'png')
-        elif selectionTexture == 4:
-            self.__caisse_valide = QImage("./sprites/caisse_valide4.png", 'png')
-            self.__mur = QImage("./sprites/mur4.png", 'png')
-
-        elif selectionTexture == 5:
-            self.__caisse_valide = QImage("./sprites/caisse_valide5.png", 'png')
-            self.__mur = QImage("./sprites/mur5.png", 'png')
 
     def setController(self, controller):
         self.__SokobanController = controller
@@ -74,30 +54,7 @@ class SokobanView(QMainWindow):
         matrix = self.__model.getMatrix()
         # configuration de la taille de la fenêtre
         self.setFixedSize(len(matrix[0] * 100), len(matrix * 100))
-        # w = self.width() / len(matrix)
-        # h = self.height() / len(matrix[0])
-
-        # attribution de la texture au joueur au mur et a la caisse
-        joueur = QPixmap(self.__joueur)
-        wall = QPixmap(self.__mur)
-        caisse = QPixmap(self.__caisse_valide)
-        for i in range(len(matrix)):
-            for j in range(len(matrix[i])):
-                label = QLabel()
-                if matrix[i][j] == 0:
-                    print(matrix[i][j])
-                    self.__grid.addWidget(label, i, j)
-                elif matrix[i][j] == 1:
-                    print(matrix[i][j])
-                    label.setPixmap(joueur)
-                    self.__grid.addWidget(label, i, j)
-                elif matrix[i][j] == 2:
-                    print(matrix[i][j])
-                    label.setPixmap(wall)
-                    self.__grid.addWidget(label, i, j)
-                elif matrix[i][j] == 3:
-                    label.setPixmap(caisse)
-                    self.__grid.addWidget(label, i, j)
+        self.update()
 
     def keyPressEvent(self, e):
         if e.key() == Qt.Key_Up:
@@ -112,3 +69,57 @@ class SokobanView(QMainWindow):
         elif e.key() == Qt.Key_Left:
             self.__SokobanController.changeDirection((1, 0))
             print((1, 0))
+
+    def update(self):
+        matrix = self.__model.getMatrix()
+        # configuration et choix des textures
+        selectionTexture = randint(1, 5)
+        imageJoueur = QImage("./sprites/perso_bas.png", 'png')
+        imageTrou = QImage("./sprites/hole.png")
+        if selectionTexture == 1:
+            imageCaisse = QImage("./sprites/caisse_valide1.png", 'png')
+            imageMur = QImage("./sprites/mur1.png", 'png')
+
+        elif selectionTexture == 2:
+            imageCaisse = QImage("./sprites/caisse_valide2.png", 'png')
+            imageMur = QImage("./sprites/mur2.png", 'png')
+
+        elif selectionTexture == 3:
+            imageCaisse = QImage("./sprites/caisse_valide3.png", 'png')
+            imageMur = QImage("./sprites/mur3.png", 'png')
+        elif selectionTexture == 4:
+            imageCaisse = QImage("./sprites/caisse_valide4.png", 'png')
+            imageMur = QImage("./sprites/mur4.png", 'png')
+
+        elif selectionTexture == 5:
+            imageCaisse = QImage("./sprites/caisse_valide5.png", 'png')
+            imageMur = QImage("./sprites/mur5.png", 'png')
+
+        # attribution de la texture au joueur au mur et a la caisse
+        w = self.width() / len(matrix)
+        h = self.height() / len(matrix[0])
+
+        joueur = QPixmap(imageJoueur.scaled(w, h))
+        wall = QPixmap(imageMur.scaled(w, h))
+        caisse = QPixmap(imageCaisse.scaled(w, h))
+        trou = QPixmap(imageTrou.scaled(w, h))
+        for i in range(len(matrix)):
+            for j in range(len(matrix[i])):
+                label = QLabel()
+                if matrix[i][j] == 0:
+                    print(matrix[i][j])
+                    self.__grid.addWidget(label, i, j)
+                elif matrix[i][j] == 1:
+                    print(matrix[i][j])
+                    label.setPixmap(joueur)
+                    self.__grid.addWidget(label, i, j)
+                elif matrix[i][j] == 2:
+                    label.setPixmap(wall)
+                    self.__grid.addWidget(label, i, j)
+                elif matrix[i][j] == 3:
+                    label.setPixmap(trou)
+                    self.__grid.addWidget(label, i, j)
+
+                elif matrix[i][j] == 4:
+                    label.setPixmap(caisse)
+                    self.__grid.addWidget(label, i, j)
