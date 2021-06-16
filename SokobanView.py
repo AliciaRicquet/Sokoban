@@ -124,7 +124,7 @@ class SokobanView(QMainWindow):
                 if matrix[i][j] == 0 :
                     label.setPixmap(sol)
                     self.__grid.addWidget(label, i, j)
-                elif matrix[i][j] == 1:
+                if matrix[i][j] == 1:
                     print(matrix[i][j])
                     label.setPixmap(joueur)
                     self.__grid.addWidget(label, i, j)
