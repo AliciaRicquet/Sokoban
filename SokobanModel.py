@@ -40,12 +40,16 @@ class SokobanModel:
                     self.__trou.append((x, y))
 
     def getCoordonneePerso(self):
-        return self.coordoneePerso
+        return self.coordonneePerso
+
+    def setCoordoneePerso(self,coo):
+        self.coordonneePerso = coo
 
     def addView(self, view):
         self.__view = view
 
-    def updateView(self):
+    def update(self, matrix):
+        self.matrix = matrix
         self.__view.update()
 
     def getDirection(self):
