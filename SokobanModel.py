@@ -41,7 +41,7 @@ class SokobanModel:
     def getCoordonneePerso(self):
         return self.coordonneePerso
 
-    def setCoordoneePerso(self,coo):
+    def setCoordoneePerso(self, coo):
         self.coordonneePerso = coo
 
     def setView(self, view):
@@ -51,14 +51,8 @@ class SokobanModel:
         self.matrix = matrix
         self.__view.update()
 
-    def getDirection(self):
-        return self.direction
-
     def getCaisse(self):
         return self.caisses
-
-    def setDirection(self, direction):
-        self.direction = direction
 
     def getMatrix(self):
         return self.matrix

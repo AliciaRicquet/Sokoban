@@ -24,7 +24,6 @@ class SokobanController:
             self.model.setCoordoneePerso((self.model.getCoordonneePerso()[0] + dir[0], self.model.getCoordonneePerso()[1] + dir[1]))
             self.__matrix = perso
             self.model.update(self.model.matrix)
-            self.model.setDirection(dir)
 
         """beref, e
         """
