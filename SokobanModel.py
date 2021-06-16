@@ -6,7 +6,6 @@ class SokobanModel:
         self.__view = None
         self.caisses = []
         self.__trou = []
-        self.direction = (0, 1)
         if level == 1:
             self.matrix = [
                 [0, 0, 2, 2, 2, 0, 0, 0],
@@ -45,7 +44,7 @@ class SokobanModel:
     def setCoordoneePerso(self,coo):
         self.coordonneePerso = coo
 
-    def addView(self, view):
+    def setView(self, view):
         self.__view = view
 
     def update(self, matrix):
