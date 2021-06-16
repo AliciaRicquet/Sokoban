@@ -1,15 +1,9 @@
-
-
-
 # 0 = case libre   1 = joueur,, 2 = mur, 3 = trou(objectif rien de personnel hein), 4 caisse
 class SokobanModel:
     def __init__(self, level):
         assert level == 1 or level == 2
 
-        self.views = []
-        self.timer.timeout.connect(self.timeEvent)
-
-        self.vitesseDeplacement = 10
+        self.__view = None
         self.caisses = []
         self.direction = (0, 1)
         self.level = level
@@ -25,41 +19,28 @@ class SokobanModel:
                 [0, 0, 0, 2, 2, 2, 0, 0]
             ]
             self.coordoneePerso = (3, 4)
+            for x in range(self.matrix):
+                for y in (self.matrix[0]):
+                    if self.matrix[x][y] == 4:
+                        self.caisses.append((x, y))
 
     def getCoordonneePerso(self):
         return self.coordoneePerso
 
-    def addView(self, views):
-        self.views.append(views)
+    def addView(self, view):
+        self.__view.append(view)
 
-    def timeEvent(self, numberOfView):
-        self.views[numberOfView].update()
-
-    def getVitesseDeplacement(self):
-        return self.vitesseDeplacement
-
-    def addCaisse(self, coordonee):
-        self.caisses.append(coordonee)
+    def updateView(self):
+        self.__view.update()
 
     def getDirection(self):
         return self.direction
 
+    def getCaisse(self):
+        return self.caisses
+
     def setDirection(self, direction):
         self.direction = direction
-
-
-    '''def moveUpCaisse(self, numCaisse):
-        self.caisses[numCaisse] = (self.caisses[numCaisse][0], self.caisses[numCaisse][1] - self.vitesseDeplacement)
-
-    def moveDownCaisse(self, numCaisse):
-        self.caisses[numCaisse] = (self.caisses[numCaisse][0], self.caisses[numCaisse][1] + self.vitesseDeplacement)
-
-    def moveRightCaisse(self, numCaisse):
-        self.caisses[numCaisse] = (self.caisses[numCaisse][0] + self.vitesseDeplacement, self.caisses[numCaisse][1])
-
-    def moveLeftCaisse(self, numCaisse):
-        self.caisses[numCaisse] = (self.caisses[numCaisse][0] - self.vitesseDeplacement, self.caisses[numCaisse][1])
-    '''
 
     def getLevel(self):
         return self.level

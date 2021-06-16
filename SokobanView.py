@@ -23,23 +23,26 @@ class SokobanView(QMainWindow):
 
     def __init__(self):
         super().__init__()
+        # initialisation pour mvc
         self.__SokobanController = None
         self.__model = None
+        # Declaration du widget et configuration
         self.__window = QWidget()
         self.setCentralWidget(self.__window)
-        self.__joueur = QImage("./sprites/perso_bas.png", 'png').copy(0, 0, 50, 50)
-        selectionTexture = randint(1, 5)
+        # Declaration du grid Layout
         self.__grid = QGridLayout()
         self.__labelGrid = []
         self.__window.setLayout(self.__grid)
-        self.__matrix = None
+        # configuration de la musique
         self.playlist = QMediaPlaylist()
         self.playlist.addMedia(QMediaContent(QUrl.fromLocalFile(
             QDir.current().relativeFilePath("../son/musique1.mp3"))))
         self.playlist.setPlaybackMode(QMediaPlaylist.Loop)
         self.levelSound = QMediaPlayer()
         self.levelSound.setPlaylist(self.playlist)
-
+        # configuration et choix des textures
+        selectionTexture = randint(1, 5)
+        self.__joueur = QImage("./sprites/perso_bas.png", 'png').copy(0, 0, 50, 50)
         if selectionTexture == 1:
             self.__caisse_valide = QImage("./sprites/caisse_valide1.png", 'png').copy(30, 0, 0, 350)
             self.__mur = QImage("./sprites/mur1.png", 'png').copy(30, 0, 400, 350)
@@ -66,23 +69,23 @@ class SokobanView(QMainWindow):
         self.__model = model
         label = QLabel()
 
-        self.__matrix = self.__model.getMatrix()
-        self.setFixedSize(len(self.__matrix[0] * 100), len(self.__matrix * 100))
-        w = self.width() / len(self.__matrix)
-        h = self.height() / len(self.__matrix[0])
+        matrix = self.__model.getMatrix()
+        self.setFixedSize(len(matrix[0] * 100), len(matrix * 100))
+        w = self.width() / len(matrix)
+        h = self.height() / len(matrix[0])
         joueur = QPixmap(self.__joueur)
         wall = QPixmap(self.__mur)
         for i in range(len(self.__matrix)):
             tmp = []
-            for j in range(len(self.__matrix[i])):
-                if self.__matrix[i][j] == 0:
+            for j in range(len(matrix[i])):
+                if matrix[i][j] == 0:
                     self.__grid.addWidget(label, i, j)
                     tmp.append(label)
-                elif self.__matrix[i][j] == 1:
+                elif matrix[i][j] == 1:
                     label.setPixmap(joueur)
                     self.__grid.addWidget(label, i, j)
                     tmp.append(label)
-                elif self.__matrix[i][j] == 2:
+                elif matrix[i][j] == 2:
                     label.setPixmap(wall)
                     self.__grid.addWidget(label, i, j)
                     tmp.append(label)

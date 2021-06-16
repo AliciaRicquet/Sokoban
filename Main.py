@@ -13,7 +13,7 @@ view.show()
 view.setModel(model)
 view.setController(controller)
 controller.setModel(model)
-controller.addView(view)
+controller.setView(view)
 model.addView(view)
 
 view.setWindowTitle("Sokoban Empire des A2")
