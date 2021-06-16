@@ -141,4 +141,5 @@ class SokobanView(QMainWindow):
                 elif matrix[i][j] == 5:
                     label.setPixmap(grass)
                     self.__grid.addWidget(label, i, j)
-
+        label = QLabel()
+        self.__grid.addWidget(label.setPixmap(joueur), self.__model.getCoordonneePerso()[0],self.__model.getCoordonneePerso()[1])

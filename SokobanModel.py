@@ -11,17 +11,18 @@ class SokobanModel:
                 [5, 5, 2, 2, 2, 5, 5, 5],
                 [5, 5, 2, 3, 2, 5, 5, 5],
                 [5, 5, 2, 4, 2, 2, 2, 2],
-                [2, 2, 2, 0, 1, 4, 3, 2],
+                [2, 2, 2, 0, 0, 4, 3, 2],
                 [2, 3, 0, 4, 4, 2, 2, 2],
                 [2, 2, 2, 2, 0, 2, 5, 5],
                 [5, 5, 5, 2, 3, 2, 5, 5],
                 [5, 5, 5, 2, 2, 2, 5, 5]
             ]
+            self.coordonneePerso = (3, 4)
         else:
             self.matrix = [
                 [0, 0, 0, 2, 2, 2, 2, 2, 0],
                 [0, 2, 2, 2, 0, 0, 0, 2, 0],
-                [0, 2, 3, 1, 4, 0, 0, 2, 0],
+                [0, 2, 3, 0, 4, 0, 0, 2, 0],
                 [0, 2, 2, 2, 0, 4, 3, 2, 0],
                 [0, 2, 3, 2, 2, 4, 0, 2, 2],
                 [0, 2, 0, 2, 0, 3, 0, 0, 2],
@@ -29,14 +30,16 @@ class SokobanModel:
                 [0, 2, 0, 0, 0, 3, 0, 0, 2],
                 [0, 2, 2, 2, 2, 2, 2, 2, 2]
             ]
+            self.coordonneePerso = (2, 3)
         for x in range(len(self.matrix)):
             for y in range(len(self.matrix[0])):
-                if self.matrix[x][y] == 1:
-                    self.coordonneePerso = (x, y)
-                elif self.matrix[x][y] == 4:
+                if self.matrix[x][y] == 4:
                     self.caisses.append((x, y))
                 elif self.matrix[x][y] == 3:
                     self.__trou.append((x, y))
+                elif self.matrix[x][y] == 1:
+                    print(x,y)
+                    self.coordonneePerso = (x, y)
 
     def getCoordonneePerso(self):
         return self.coordonneePerso
