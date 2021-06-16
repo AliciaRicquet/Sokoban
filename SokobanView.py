@@ -130,6 +130,6 @@ class SokobanView(QMainWindow):
                     label.setPixmap(trou)
                     self.__grid.addWidget(label, i, j)
 
-                elif matrix[i][j] == 4:
+                elif matrix[i][j] == 4:z
                     label.setPixmap(caisse)
                     self.__grid.addWidget(label, i, j)
