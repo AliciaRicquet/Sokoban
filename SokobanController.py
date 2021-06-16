@@ -19,15 +19,15 @@ class SokobanController:
         self.__matrix = self.model.getMatrix()
 
     def movement(self, dir):
-        perso = [self.model.getCoordonneePerso()[0] - dir[0]][self.model.getCoordonneePerso()[1]- dir[1]]
+        perso = ([self.model.getCoordonneePerso()[0] - dir[0]],[self.model.getCoordonneePerso()[1] - dir[1]])
         if self.verifMurPerso(dir):
             self.model.setCoordoneePerso((self.model.getCoordonneePerso()[0] + dir[0], self.model.getCoordonneePerso()[1] + dir[1]))
             self.__matrix = perso
             self.update(self.__matrix)
             self.model.setDirection(dir)
 
-"""beref, e
-"""
+    """beref, e
+    """
 
     def verifMurPerso(self, dir):
         matrice = self.model.getMatrix()
