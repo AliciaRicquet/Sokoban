@@ -1,5 +1,3 @@
-
-
 class SokobanController:
     """
     TODO - fonction changement de direction - mise en place timer  et mise a jour du model - gestion des evenements
@@ -7,21 +5,21 @@ class SokobanController:
     TODO - 0 = case libre   1 = joueur, 2 = mur, 3 = trou(objectif rien de personnel hein)
     PS: hesitez pas a ajouter des idéee
     """
+
     def __init__(self):
         self.model = None
         self.view = None
-        self.model.matrix()
+        self.__matrix = None
 
     def setView(self, view):
         self.view = view
 
     def setModel(self, model):
         self.model = model
-
+        self.__matrix = self.model.getMatrix()
 
     def upMovement(self):
-       tmp = self.model.getCoordoneePerso()
-
+        tmp = self.model.getCoordoneePerso()
 
     def downMovement(self):
         self.model.setCoordoneePerso(self.model.getCoordoneePerso[0], self.model.getCoordoneePerso[1] +
@@ -35,19 +33,15 @@ class SokobanController:
         self.model.setCoordoneePerso(self.model.getCoordoneePerso[0] - self.model.getVitesseDeplacement,
                                      self.model.getCoordoneePerso[1])
 
-    def  verifMur(self):
-        dir = self.model.getDirection()
+    def verifMurPerso(self, dir):
         matrice = self.model.getMatrix()
-        for i in range(len(self.model.matrix)):
-            for j in range(len(self.model.matrix[0])):
-                if dir:
-                    if matrice[i][j] == 3:
-                        if self.model.getCoordoneePerso == matrice:
-                            return True
+        cooPerso = self.model.getCoordoneePerso()
+        if matrice[cooPerso[0] + dir[0]][cooPerso[1] + dir[1]] != 2:
+            return True
         return False
 
-    def changerDirection(self, dir):
-        if dir != (-self.model.getDirection()[0], -self.model.getDirection()[1]) and dir != self.verifMur():
+    def changeDirection(self, dir):
+        if self.verifMurPerso(dir):
             if self.upMovement():
                 self.model.setDirection(dir)
             elif self.downMovement():
@@ -56,4 +50,3 @@ class SokobanController:
                 self.model.setDirection(dir)
             elif self.leftMovement():
                 self.model.setDirection(dir)
-

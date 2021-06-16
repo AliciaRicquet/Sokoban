@@ -5,9 +5,9 @@ class SokobanModel:
 
         self.__view = None
         self.caisses = []
+        self.__trou = []
         self.direction = (0, 1)
-        self.level = level
-        if self.level == 1:
+        if level == 1:
             self.matrix = [
                 [0, 0, 2, 2, 2, 0, 0, 0],
                 [0, 0, 2, 3, 2, 0, 0, 0],
@@ -18,17 +18,32 @@ class SokobanModel:
                 [0, 0, 0, 2, 3, 2, 0, 0],
                 [0, 0, 0, 2, 2, 2, 0, 0]
             ]
-            self.coordoneePerso = (3, 4)
-            for x in range(self.matrix):
-                for y in (self.matrix[0]):
-                    if self.matrix[x][y] == 4:
-                        self.caisses.append((x, y))
+        else:
+            self.matrix = [
+                [0, 0, 0, 2, 2, 2, 2, 2, 0],
+                [0, 2, 2, 2, 0, 0, 0, 2, 0],
+                [0, 2, 3, 1, 4, 0, 0, 2, 0],
+                [0, 2, 2, 2, 0, 4, 3, 2, 0],
+                [0, 2, 3, 2, 2, 4, 0, 2, 2],
+                [0, 2, 0, 2, 0, 3, 0, 0, 2],
+                [0, 2, 4, 0, 0, 4, 4, 3, 2],
+                [0, 2, 0, 0, 0, 3, 0, 0, 2],
+                [0, 2, 2, 2, 2, 2, 2, 2, 2]
+            ]
+        for x in range(len(self.matrix)):
+            for y in range (len(self.matrix[0])):
+                if self.matrix[x][y] == 1:
+                    self.coordonneePerso = (x, y)
+                elif self.matrix[x][y] == 4:
+                    self.caisses.append((x, y))
+                elif self.matrix[x][y] == 3:
+                    self.__trou.append((x, y))
 
     def getCoordonneePerso(self):
         return self.coordoneePerso
 
     def addView(self, view):
-        self.__view.append(view)
+        self.__view = view
 
     def updateView(self):
         self.__view.update()
@@ -41,12 +56,6 @@ class SokobanModel:
 
     def setDirection(self, direction):
         self.direction = direction
-
-    def getLevel(self):
-        return self.level
-
-    def setLevel(self, number):
-        self.level = number
 
     def getMatrix(self):
         return self.matrix

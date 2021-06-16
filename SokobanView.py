@@ -66,16 +66,21 @@ class SokobanView(QMainWindow):
         self.__SokobanController = controller
 
     def setModel(self, model):
+        # Attribution du model
         self.__model = model
+        # creation d' un label
         label = QLabel()
-
+        # recupération de la matrice du model
         matrix = self.__model.getMatrix()
+        # configuration de la taille de la fenêtre
         self.setFixedSize(len(matrix[0] * 100), len(matrix * 100))
-        w = self.width() / len(matrix)
-        h = self.height() / len(matrix[0])
+        # w = self.width() / len(matrix)
+        # h = self.height() / len(matrix[0])
+
+        # attribution de la texture au joueur au mur et a la caisse
         joueur = QPixmap(self.__joueur)
         wall = QPixmap(self.__mur)
-        for i in range(len(self.__matrix)):
+        for i in range(len(matrix)):
             tmp = []
             for j in range(len(matrix[i])):
                 if matrix[i][j] == 0:
