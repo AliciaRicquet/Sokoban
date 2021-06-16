@@ -1,9 +1,9 @@
 from random import randint
 
 from PyQt5.QtCore import Qt, QUrl, QDir
-from PyQt5.QtGui import QPixmap, QImage
+from PyQt5.QtGui import QPixmap, QImage, QIcon
 from PyQt5.QtMultimedia import QMediaPlaylist, QMediaContent, QMediaPlayer
-from PyQt5.QtWidgets import QMainWindow, QGridLayout, QLabel, QWidget
+from PyQt5.QtWidgets import QMainWindow, QGridLayout, QLabel, QWidget, QDesktopWidget
 
 
 class SokobanView(QMainWindow):
@@ -29,6 +29,9 @@ class SokobanView(QMainWindow):
         # Declaration du widget et configuration
         self.__window = QWidget()
         self.setCentralWidget(self.__window)
+        self.setWindowIcon(QIcon("sprites/mur3.png"))
+        size_ecran = QDesktopWidget().screenGeometry()
+        self.move((size_ecran.width() - self.geometry().width()) / 3, (size_ecran.height() - self.geometry().height())/10)
         # Declaration du grid Layout
         self.__grid = QGridLayout()
         self.__grid.setSpacing(0)
