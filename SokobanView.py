@@ -4,6 +4,7 @@ from PyQt5.QtCore import Qt, QUrl, QDir
 from PyQt5.QtGui import QPixmap, QImage, QIcon
 from PyQt5.QtMultimedia import QMediaPlaylist, QMediaContent, QMediaPlayer
 from PyQt5.QtWidgets import QMainWindow, QGridLayout, QLabel, QWidget, QDesktopWidget
+from PyQt5.Qt import Qt, QSound
 
 
 class SokobanView(QMainWindow):
@@ -42,8 +43,8 @@ class SokobanView(QMainWindow):
         self.playlist.addMedia(QMediaContent(QUrl.fromLocalFile(
             QDir.current().absoluteFilePath("son/musique1.mp3"))))
         self.playlist.setPlaybackMode(QMediaPlaylist.Loop)
-        self.levelSound = QMediaPlayer()
-        self.levelSound.setPlaylist(self.playlist)
+        self.musiqueSound = QMediaPlayer()
+        self.musiqueSound.setPlaylist(self.playlist)
         # choix texture
         self.selectionTexture = randint(1, 5)
 
@@ -60,6 +61,8 @@ class SokobanView(QMainWindow):
         # configuration de la taille de la fenêtre
         self.setFixedSize(len(matrix[0] * 100), len(matrix * 100))
         self.update()
+
+        self.musiqueSound.play()
 
     def keyPressEvent(self, e):
         if e.key() == Qt.Key_Up:
