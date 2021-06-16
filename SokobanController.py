@@ -24,8 +24,8 @@ class SokobanController:
         print(perso[0],perso[1])
         if self.verifMurPerso(dir):
             self.model.setCoordoneePerso((perso[0], perso[1]))
-            self.model.update(self.model.matrix)
-
+            self.model.update(self.model.getMatrix)
+        print(self.victoire())
         """beref, e
         """
 
@@ -39,5 +39,9 @@ class SokobanController:
     def victoire(self):
         tabCaisse = self.model.getCaisse()
         tabTrou = self.model.getTrou()
-        tmp =
-        for i
+        tmp = []
+        while tabCaisse in tabTrou:
+            tmp.append(tabCaisse)
+        if len(tabCaisse) != len(tmp):
+            return False
+        return True
