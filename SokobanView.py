@@ -69,32 +69,35 @@ class SokobanView(QMainWindow):
         # Attribution du model
         self.__model = model
         # creation d' un label
-        label = QLabel()
+
         # recupération de la matrice du model
         matrix = self.__model.getMatrix()
         # configuration de la taille de la fenêtre
-        #self.setFixedSize(len(matrix[0] * 100), len(matrix * 100))
+        self.setFixedSize(len(matrix[0] * 100), len(matrix * 100))
         # w = self.width() / len(matrix)
         # h = self.height() / len(matrix[0])
 
         # attribution de la texture au joueur au mur et a la caisse
         joueur = QPixmap(self.__joueur)
         wall = QPixmap(self.__mur)
+        caisse = QPixmap(self.__caisse_valide)
         for i in range(len(matrix)):
-            tmp = []
             for j in range(len(matrix[i])):
+                label = QLabel()
                 if matrix[i][j] == 0:
+                    print(matrix[i][j])
                     self.__grid.addWidget(label, i, j)
-                    tmp.append(label)
                 elif matrix[i][j] == 1:
+                    print(matrix[i][j])
                     label.setPixmap(joueur)
                     self.__grid.addWidget(label, i, j)
-                    tmp.append(label)
                 elif matrix[i][j] == 2:
+                    print(matrix[i][j])
                     label.setPixmap(wall)
                     self.__grid.addWidget(label, i, j)
-                    tmp.append(label)
-            self.__labelGrid.append(tmp)
+                elif matrix[i][j] == 3:
+                    label.setPixmap(caisse)
+                    self.__grid.addWidget(label, i, j)
 
     def keyPressEvent(self, e):
         if e.key() == Qt.Key_Up:
