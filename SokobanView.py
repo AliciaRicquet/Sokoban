@@ -25,7 +25,7 @@ class SokobanView(QMainWindow):
     def __init__(self):
         super().__init__()
         # initialisation pour mvc
-        self.__SokobanController = None
+        self.__controller = None
         self.__model = None
         # Declaration du widget et configuration
         self.__window = QWidget()
@@ -49,7 +49,7 @@ class SokobanView(QMainWindow):
         self.selectionTexture = randint(1, 5)
 
     def setController(self, controller):
-        self.__SokobanController = controller
+        self.__controller = controller
 
     def setModel(self, model):
         # Attribution du model
@@ -66,16 +66,16 @@ class SokobanView(QMainWindow):
 
     def keyPressEvent(self, e):
         if e.key() == Qt.Key_Up:
-            self.__SokobanController.movement((0, -1))
+            self.__controller.movement((0, -1))
             print((0, -1))
         elif e.key() == Qt.Key_Down:
-            self.__SokobanController.movement((0, 1))
+            self.__controller.movement((0, 1))
             print((0, 1))
         elif e.key() == Qt.Key_Right:
-            self.__SokobanController.movement((-1, 0))
+            self.__controller.movement((-1, 0))
             print((-1, 0))
         elif e.key() == Qt.Key_Left:
-            self.__SokobanController.movement((1, 0))
+            self.__controller.movement((1, 0))
             print((1, 0))
         else:
             return
