@@ -19,10 +19,15 @@ class SokobanController:
         self.__matrix = self.model.getMatrix()
 
     def movement(self, dir):
+        perso = [self.model.getCoordonneePerso()[0] - dir[0]][self.model.getCoordonneePerso()[1]- dir[1]]
         if self.verifMurPerso(dir):
             self.model.setCoordoneePerso((self.model.getCoordonneePerso()[0] + dir[0], self.model.getCoordonneePerso()[1] + dir[1]))
-            self.__matrix = [self.model.getCoordonneePerso()[0]][self.model.getCoordonneePerso()[1]]
+            self.__matrix = perso
             self.update(self.__matrix)
+            self.model.setDirection(dir)
+
+"""beref, e
+"""
 
     def verifMurPerso(self, dir):
         matrice = self.model.getMatrix()
@@ -30,14 +35,3 @@ class SokobanController:
         if matrice[cooPerso[0] + dir[0]][cooPerso[1] + dir[1]] != 2:
             return True
         return False
-
-    def changeDirection(self, dir):
-        if self.verifMurPerso(dir):
-            if self.upMovement():
-                self.model.setDirection(dir)
-            elif self.downMovement():
-                self.model.setDirection(dir)
-            elif self.rightMovement():
-                self.model.setDirection(dir)
-            elif self.leftMovement():
-                self.model.setDirection(dir)
