@@ -20,13 +20,13 @@ class SokobanController:
 
     def movement(self, dir):
         if self.verifMurPerso(dir):
-            self.model.setCoordoneePerso(self.model.getCoordoneePerso()[0] + dir[0], self.model.getCoordoneePerso()[1] + dir[1])
-            self.__matrix = [self.model.getCoordoneePerso()[0]][self.model.getCoordoneePerso()[1]]
+            self.model.setCoordoneePerso((self.model.getCoordonneePerso()[0] + dir[0], self.model.getCoordonneePerso()[1] + dir[1]))
+            self.__matrix = [self.model.getCoordonneePerso()[0]][self.model.getCoordonneePerso()[1]]
             self.update(self.__matrix)
 
     def verifMurPerso(self, dir):
         matrice = self.model.getMatrix()
-        cooPerso = self.model.getCoordoneePerso()
+        cooPerso = self.model.getCoordonneePerso()
         if matrice[cooPerso[0] + dir[0]][cooPerso[1] + dir[1]] != 2:
             return True
         return False

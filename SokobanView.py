@@ -31,6 +31,7 @@ class SokobanView(QMainWindow):
         self.setCentralWidget(self.__window)
         # Declaration du grid Layout
         self.__grid = QGridLayout()
+        self.__grid.setSpacing(0)
         self.__labelGrid = []
         self.__window.setLayout(self.__grid)
         # configuration de la musique
