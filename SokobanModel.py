@@ -37,9 +37,6 @@ class SokobanModel:
                     self.caisses.append((x, y))
                 elif self.matrix[x][y] == 3:
                     self.__trou.append((x, y))
-                elif self.matrix[x][y] == 1:
-                    print(x,y)
-                    self.coordonneePerso = (x, y)
 
     def getCoordonneePerso(self):
         return self.coordonneePerso
