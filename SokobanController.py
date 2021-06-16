@@ -35,3 +35,9 @@ class SokobanController:
         if matrice[cooPerso[0] + dir[0]][cooPerso[1] + dir[1]] != 2:
             return True
         return False
+
+    def victoire(self):
+        tabCaisse = self.model.getCaisse()
+        tabTrou = self.model.getTrou()
+        tmp =
+        for i

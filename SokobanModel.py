@@ -4,10 +4,10 @@ class SokobanModel:
         assert level == 1 or level == 2
         self.__controller = None
         self.__view = None
-        self.caisses = []
+        self.__caisses = []
         self.__trou = []
         if level == 1:
-            self.matrix = [
+            self.__matrix = [
                 [5, 5, 2, 2, 2, 5, 5, 5],
                 [5, 5, 2, 3, 2, 5, 5, 5],
                 [5, 5, 2, 4, 2, 2, 2, 2],
@@ -17,9 +17,9 @@ class SokobanModel:
                 [5, 5, 5, 2, 3, 2, 5, 5],
                 [5, 5, 5, 2, 2, 2, 5, 5]
             ]
-            self.coordonneePerso = (3, 4)
+            self.__coordonneePerso = [3, 4]
         else:
-            self.matrix = [
+            self.__matrix = [
                 [0, 0, 0, 2, 2, 2, 2, 2, 0],
                 [0, 2, 2, 2, 0, 0, 0, 2, 0],
                 [0, 2, 3, 0, 4, 0, 0, 2, 0],
@@ -30,29 +30,32 @@ class SokobanModel:
                 [0, 2, 0, 0, 0, 3, 0, 0, 2],
                 [0, 2, 2, 2, 2, 2, 2, 2, 2]
             ]
-            self.coordonneePerso = (2, 3)
-        for x in range(len(self.matrix)):
-            for y in range(len(self.matrix[0])):
-                if self.matrix[x][y] == 4:
-                    self.caisses.append((x, y))
-                elif self.matrix[x][y] == 3:
+            self.__coordonneePerso = [2, 3]
+        for x in range(len(self.__matrix)):
+            for y in range(len(self.__matrix[0])):
+                if self.__matrix[x][y] == 4:
+                    self.__caisses.append((x, y))
+                elif self.__matrix[x][y] == 3:
                     self.__trou.append((x, y))
 
     def getCoordonneePerso(self):
-        return self.coordonneePerso
+        return self.__coordonneePerso
 
     def setCoordoneePerso(self, coo):
-        self.coordonneePerso = coo
+        self.__coordonneePerso = coo
 
     def setView(self, view):
         self.__view = view
 
     def update(self, matrix):
-        self.matrix = matrix
+        self.__matrix = matrix
         self.__view.update()
 
     def getCaisse(self):
-        return self.caisses
+        return self.__caisses
+
+    def getTrou(self):
+        return self.__trou
 
     def getMatrix(self):
-        return self.matrix
+        return self.__matrix

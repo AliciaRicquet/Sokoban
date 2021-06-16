@@ -41,7 +41,8 @@ class SokobanView(QMainWindow):
         # configuration de la musique
         self.playlist = QMediaPlaylist()
         self.playlist.addMedia(QMediaContent(QUrl.fromLocalFile(
-            QDir.current().absoluteFilePath("son/musique1.mp3"))))
+            QDir.current().absoluteFilePath("son/musique1.mp3"))
+        ))
         self.playlist.setPlaybackMode(QMediaPlaylist.Loop)
         self.musiqueSound = QMediaPlayer()
         self.musiqueSound.setPlaylist(self.playlist)
@@ -124,13 +125,16 @@ class SokobanView(QMainWindow):
                 if matrix[i][j] == 0 :
                     label.setPixmap(sol)
                     self.__grid.addWidget(label, i, j)
-                if matrix[i][j] == 1:
+
+                elif matrix[i][j] == 1:
                     print(matrix[i][j])
                     label.setPixmap(joueur)
                     self.__grid.addWidget(label, i, j)
+
                 elif matrix[i][j] == 2:
                     label.setPixmap(wall)
                     self.__grid.addWidget(label, i, j)
+
                 elif matrix[i][j] == 3:
                     label.setPixmap(trou)
                     self.__grid.addWidget(label, i, j)
@@ -141,5 +145,5 @@ class SokobanView(QMainWindow):
                 elif matrix[i][j] == 5:
                     label.setPixmap(grass)
                     self.__grid.addWidget(label, i, j)
-        label = QLabel()
-        self.__grid.addWidget(label.setPixmap(joueur), self.__model.getCoordonneePerso()[0],self.__model.getCoordonneePerso()[1])
+        labelperso = QLabel()
+        self.__grid.addWidget(labelperso.setPixmap(joueur), self.__model.getCoordonneePerso()[0],self.__model.getCoordonneePerso()[1])
