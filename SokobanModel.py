@@ -93,5 +93,9 @@ class SokobanModel:
             ]
             self.__coordonneePerso = [2, 3]
             self.__caisses = [[2, 4], [3, 5], [4, 5], [6, 2], [6, 5], [6, 6], [4, 6]]
+
     def addPas(self):
         self.__step += 1
+
+    def getPas(self):
+        return self.__step
