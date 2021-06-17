@@ -65,12 +65,15 @@ class SokobanController:
         matrice = self.model.getMatrix()
         cooPerso = self.model.getCoordonneePerso()
         if matrice[cooPerso[0] + (dir[0])*2][cooPerso[1] + (dir[1])*2] != 2:
-            for element in self.model.getCaisse():
-                if element[0] == cooPerso[0] + (dir[0])*2 and element[0] == cooPerso[1] + (dir[1])*2 :
-                    return False
             return True
         return False
 
+    def verifCaisseCaisse(self,dir):
+        cooPerso = self.model.getCoordonneePerso()
+        for element in self.model.getCaisse():
+            if element[0] == cooPerso[0] + (dir[0]) * 2 and element[0] == cooPerso[1] + (dir[1]) * 2:
+                return False
+        return True
     def verifCaisses(self, dir):
         cooPerso = self.model.getCoordonneePerso()
         cooCaisse = self.model.getCaisse()
