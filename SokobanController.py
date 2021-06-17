@@ -9,6 +9,7 @@ class SokobanController:
     def __init__(self):
         self.model = None
         self.view = None
+        self.__vic = False
 
     def setView(self, view):
         self.view = view
@@ -87,9 +88,13 @@ class SokobanController:
         print(trou)
         for i in range(len(caisse)):
             if caisse[i][0] != trou[i][0] or caisse[i][1] != trou[i][1]:
-                return False
+                return self.__vic
+        self.__vic = True
         self.view.victoireSon()
-        return True
+        return self.__vic
+
+    def changeLevel1(self):
+        self.model.updateNiveau(1)
 
     def changeLevel1(self):
         self.model.updateNiveau(1)
