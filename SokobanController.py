@@ -19,15 +19,12 @@ class SokobanController:
         self.__matrix = self.model.getMatrix()
 
     def movement(self, dir):
-        perso = (self.model.getCoordonneePerso()[0] + dir[0], self.model.getCoordonneePerso()[1] + dir[1])
-        print(self.verifMurPerso(dir))
-        print(perso[0],perso[1])
-        if self.verifMurPerso(dir):
-            self.model.setCoordoneePerso((perso[0], perso[1]))
+        perso = [self.model.getCoordonneePerso()[0] - dir[0]], [self.model.getCoordonneePerso()[1] - dir[1]]
+        if self.verifMurPerso(dir) and self.verifCaisses(dir):
+            self.model.setCoordoneePerso([self.model.getCoordonneePerso()[0] + dir[0], self.model.getCoordonneePerso()[1] + dir[1]])
+            self.__matrix = perso
             self.model.update(self.model.getMatrix())
-        print(self.victoire())
-        """beref, e
-        """
+
 
     def verifMurPerso(self, dir):
         matrice = self.model.getMatrix()
@@ -36,12 +33,12 @@ class SokobanController:
             return True
         return False
 
-    def victoire(self):
-        tabCaisse = self.model.getCaisse()
-        tabTrou = self.model.getTrou()
-        tmp = []
-        while tabCaisse in tabTrou:
-            tmp.append(tabCaisse)
-        if len(tabCaisse) != len(tmp):
-            return False
+    def verifCaisses(self, dir):
+        matrice = self.model.getMatrix()
+        cooPerso = self.model.getCoordonneePerso()
+        cooCaisse = self.model.getCaisse()
+        for elements in cooCaisse:
+            if  elements not in cooCaisse or matrice[cooPerso[0] + dir[0]][cooPerso[1] + dir[1]]:
+                return False
+            print(cooPerso)
         return True
