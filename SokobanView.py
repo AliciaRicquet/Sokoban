@@ -106,13 +106,14 @@ class SokobanView(QMainWindow):
         levelMenu = QMenu("&Level", self)
         menuBar.addMenu(levelMenu)
 
-        restart = QAction(self)
-        restart.setText("&Restart")
-        gameMenu.addAction(restart)
         level1 = QAction(self)
         level1.setText("&Level 1")
-        level1.triggered.connect(self.__controller.updateLevel)
+        level1.triggered.connect(self.__controller.changeLevel1)
         levelMenu.addAction(level1)
+        level2 = QAction(self)
+        level2.setText("&Level 2")
+        level2.triggered.connect(self.__controller.changeLevel2)
+        levelMenu.addAction(level2)
         # restart.triggered.connect(self.restart)
         # quitter le jeu
         exitProgram = QAction(self)
@@ -131,7 +132,6 @@ class SokobanView(QMainWindow):
         self.update()
 
         self.musiqueSound.play()
-        self.caisseBouger()
 
     def keyPressEvent(self, e):
         if e.key() == Qt.Key_Up:

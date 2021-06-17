@@ -91,5 +91,8 @@ class SokobanController:
         self.view.victoireSon()
         return True
 
-    def updateLevel(self,level):
-        self.model.updateNiveau(level)
+    def changeLevel1(self):
+        self.model.updateNiveau(1)
+
+    def changeLevel2(self):
+        self.model.updateNiveau(2)

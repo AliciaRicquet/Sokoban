@@ -66,16 +66,18 @@ class SokobanModel:
         return self.__matrix
 
     def updateNiveau(self, level):
+        self.__trou = []
         if level == 1:
             self.__matrix = [
-                [5, 5, 2, 2, 2, 5, 5, 5],
-                [5, 5, 2, 3, 2, 5, 5, 5],
-                [5, 5, 2, 0, 2, 2, 2, 2],
-                [2, 2, 2, 0, 0, 0, 3, 2],
-                [2, 3, 0, 0, 0, 2, 2, 2],
-                [2, 2, 2, 2, 0, 2, 5, 5],
-                [5, 5, 5, 2, 3, 2, 5, 5],
-                [5, 5, 5, 2, 2, 2, 5, 5]
+                [5, 5, 2, 2, 2, 5, 5, 5,5],
+                [5, 5, 2, 3, 2, 5, 5, 5,5],
+                [5, 5, 2, 0, 2, 2, 2, 2,5],
+                [2, 2, 2, 0, 0, 0, 3, 2,5],
+                [2, 3, 0, 0, 0, 2, 2, 2,5],
+                [2, 2, 2, 2, 0, 2, 5, 5,5],
+                [5, 5, 5, 2, 3, 2, 5, 5,5],
+                [5, 5, 5, 2, 2, 2, 5, 5,5],
+                [5, 5, 5, 5, 5, 5, 5, 5,5]
             ]
             self.__coordonneePerso = [3, 4]
             self.__caisses = [[2, 3], [3, 5], [4, 3], [4, 4]]
@@ -92,7 +94,11 @@ class SokobanModel:
                 [5, 2, 2, 2, 2, 2, 2, 2, 2]
             ]
             self.__coordonneePerso = [2, 3]
-            self.__caisses = [[2, 4], [3, 5], [4, 5], [6, 2], [6, 5], [6, 6], [4, 6]]
+            self.__caisses = [[2, 4], [3, 5], [4, 5], [6, 2], [6, 5], [6, 4], [6, 6]]
+        for x in range(len(self.__matrix)):
+            for y in range(len(self.__matrix[0])):
+                if self.__matrix[x][y] == 3:
+                    self.__trou.append([x, y])
         self.__view.update()
 
     def addPas(self):
