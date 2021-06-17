@@ -38,7 +38,7 @@ class SokobanController:
         cooPerso = self.model.getCoordonneePerso()
         cooCaisse = self.model.getCaisse()
         for elements in cooCaisse:
-            if  elements not in cooCaisse or matrice[cooPerso[0] + dir[0]][cooPerso[1] + dir[1]]:
+            if  elements[0] == cooPerso[0]+dir[0] and elements[1] == cooPerso[1]+dir[1]:
                 return False
             print(cooPerso)
         return True
