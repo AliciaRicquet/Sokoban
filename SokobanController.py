@@ -87,8 +87,9 @@ class SokobanController:
         print(trou)
         for i in range(len(caisse)):
             if caisse[i][0] != trou[i][0] or caisse[i][1] != trou[i][1]:
-                print(False)
-        print(True)
+                return False
+        self.view.victoireSon()
+        return True
 
     def updateLevel(self,level):
         self.model.updateNiveau(level)

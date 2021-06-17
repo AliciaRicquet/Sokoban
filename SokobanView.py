@@ -132,7 +132,6 @@ class SokobanView(QMainWindow):
 
         self.musiqueSound.play()
         self.caisseBouger()
-        self.victoireSon()
 
     def keyPressEvent(self, e):
         if e.key() == Qt.Key_Up:
