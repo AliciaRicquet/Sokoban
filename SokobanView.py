@@ -54,7 +54,6 @@ class SokobanView(QMainWindow):
         self.__trou = None
         self.__sol = None
         self.__grass = None
-        self.caisse = QSound("son/smw_coin.wav")
 
     def confImage(self):
         matrix = self.__model.getMatrix()
@@ -156,4 +155,5 @@ class SokobanView(QMainWindow):
             self.__grid.addWidget(labelCaisse,element[0],element[1])
 
     def caisseBouger(self):
-            self.coinSound.play()
+        caisse = QSound("sources/smw_coin.wav")
+        caisse.play()

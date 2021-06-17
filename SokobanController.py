@@ -41,6 +41,7 @@ class SokobanController:
                             )
                             self.model.addPas()
                             self.model.update(self.model.getMatrix())
+                            self.view.caisseBouger()
                     print(self.model.getPas())
 
     def obtenirLaCaisseABouger(self, coo):
