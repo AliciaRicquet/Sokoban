@@ -82,8 +82,10 @@ class SokobanController:
 
     def victoire(self):
         caisse = self.model.getCaisse()
+        print(caisse)
         trou = self.model.getTrou()
+        print(trou)
         for i in range(len(caisse)):
             if caisse[i][0] != trou[i][0] or caisse[i][1] != trou[i][1]:
-                return False
-        return True
+                print(False)
+        print(True)
