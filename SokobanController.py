@@ -30,15 +30,16 @@ class SokobanController:
                 self.model.update(self.model.getMatrix())
             elif not self.verifCaisses(dir):
                 if self.verifMurCaisse(dir):
+                    print("caisse avant ", self.model.getCaisse())
                     indice = self.obtenirLaCaisseABouger(dir)
                     self.model.modifierCaisse(
-                        indice,(
+                        indice,[
                             self.model.getCaisse()[indice][0] + dir[0], self.model.getCaisse()[indice][1] + dir[1]
-                        ))
+                        ])
                     self.model.setCoordoneePerso(
                         [self.model.getCoordonneePerso()[0] + dir[0], self.model.getCoordonneePerso()[1] + dir[1]]
                     )
-
+                    print("caisse après", self.model.getCaisse())
 
                     self.__matrix = perso
                     self.model.update(self.model.getMatrix())
