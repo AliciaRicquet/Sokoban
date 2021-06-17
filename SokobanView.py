@@ -193,4 +193,4 @@ class SokobanView(QMainWindow):
         self.victoire.play()
 
     def objectif(self):
-        self.objectif.play()
+        self.bonEndroit.play()
