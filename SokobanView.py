@@ -54,7 +54,8 @@ class SokobanView(QMainWindow):
         self.__trou = None
         self.__sol = None
         self.__grass = None
-        self.caisse = QSound("son/bruitCaisse.mp3")
+        self.caisse = QSound("son/bruitCaisse.wav")
+        self.victoire = QSound("son/victoire.wav")
 
     def confImage(self):
         matrix = self.__model.getMatrix()
@@ -131,6 +132,7 @@ class SokobanView(QMainWindow):
 
         self.musiqueSound.play()
         self.caisseBouger()
+        self.victoireSon()
 
     def keyPressEvent(self, e):
         if e.key() == Qt.Key_Up:
@@ -180,3 +182,6 @@ class SokobanView(QMainWindow):
 
     def caisseBouger(self):
         self.caisse.play()
+
+    def victoireSon(self):
+        self.victoire.play()
