@@ -54,7 +54,7 @@ class SokobanView(QMainWindow):
         self.__trou = None
         self.__sol = None
         self.__grass = None
-        self.caisse = QSound("sources/smw_coin.wav")
+        self.caisse = QSound("son/smw_coin.wav")
 
     def confImage(self):
         matrix = self.__model.getMatrix()
