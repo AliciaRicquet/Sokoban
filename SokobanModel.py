@@ -55,6 +55,9 @@ class SokobanModel:
     def getCaisse(self):
         return self.__caisses
 
+    def modifierCaisse(self,indice,caisse):
+        self.__caisses[indice] = caisse
+
     def getTrou(self):
         return self.__trou
 

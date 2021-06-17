@@ -19,11 +19,37 @@ class SokobanController:
         self.__matrix = self.model.getMatrix()
 
     def movement(self, dir):
-        perso = [self.model.getCoordonneePerso()[0] - dir[0]], [self.model.getCoordonneePerso()[1] - dir[1]]
-        if self.verifMurPerso(dir) and self.verifCaisses(dir):
-            self.model.setCoordoneePerso([self.model.getCoordonneePerso()[0] + dir[0], self.model.getCoordonneePerso()[1] + dir[1]])
-            self.__matrix = perso
-            self.model.update(self.model.getMatrix())
+        perso = [[self.model.getCoordonneePerso()[0] + dir[0]], [self.model.getCoordonneePerso()[1] + dir[1]]]
+        if self.verifMurPerso(dir):
+            if self.verifCaisses(dir):
+                self.model.setCoordoneePerso(
+                    [self.model.getCoordonneePerso()[0] + dir[0], self.model.getCoordonneePerso()[1] + dir[1]]
+                )
+
+                self.__matrix = perso
+                self.model.update(self.model.getMatrix())
+            elif not self.verifCaisses(dir):
+                if self.verifMurCaisse(dir):
+                    indice = self.obtenirLaCaisseABouger(dir)
+                    self.model.modifierCaisse(
+                        indice,(
+                            self.model.getCaisse()[indice][0] + dir[0], self.model.getCaisse()[indice][1] + dir[1]
+                        ))
+                    self.model.setCoordoneePerso(
+                        [self.model.getCoordonneePerso()[0] + dir[0], self.model.getCoordonneePerso()[1] + dir[1]]
+                    )
+
+
+                    self.__matrix = perso
+                    self.model.update(self.model.getMatrix())
+
+
+    def obtenirLaCaisseABouger(self,coo):
+        caisse = self.model.getCaisse()
+        perso = self.model.getCoordonneePerso()
+        for i in range(len(caisse)):
+            if perso[0] + coo[0] == caisse[i][0] and  perso[1] + coo[1] == caisse[i][1]:
+                return i
 
 
     def verifMurPerso(self, dir):
@@ -33,12 +59,17 @@ class SokobanController:
             return True
         return False
 
-    def verifCaisses(self, dir):
+    def verifMurCaisse(self,dir):
         matrice = self.model.getMatrix()
+        cooPerso = self.model.getCoordonneePerso()
+        if matrice[cooPerso[0] + (dir[0]+1)][cooPerso[1] + (dir[1]+1)] != 2:
+            return True
+        return False
+
+    def verifCaisses(self, dir):
         cooPerso = self.model.getCoordonneePerso()
         cooCaisse = self.model.getCaisse()
         for elements in cooCaisse:
             if  elements[0] == cooPerso[0]+dir[0] and elements[1] == cooPerso[1]+dir[1]:
                 return False
-            print(cooPerso)
         return True
