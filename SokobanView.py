@@ -54,6 +54,7 @@ class SokobanView(QMainWindow):
         self.__trou = None
         self.__sol = None
         self.__grass = None
+        self.caisse = QSound("sources/smw_coin.wav")
 
     def confImage(self):
         matrix = self.__model.getMatrix()
@@ -111,16 +112,16 @@ class SokobanView(QMainWindow):
     def keyPressEvent(self, e):
         if e.key() == Qt.Key_Up:
             self.__controller.movement((-1, 0))
-            print((0, -1))
+
         elif e.key() == Qt.Key_Down:
             self.__controller.movement((1,0))
-            print((0, 1))
+
         elif e.key() == Qt.Key_Right:
             self.__controller.movement((0, 1))
-            print((-1, 0))
+
         elif e.key() == Qt.Key_Left:
             self.__controller.movement((0, -1))
-            print((1, 0))
+
         else:
             return
 
@@ -129,8 +130,8 @@ class SokobanView(QMainWindow):
         # configuration et choix des textures
 
 
-        for i in range(len(matrix)):
-            for j in range(len(matrix[i])):
+        for i in range(0,len(matrix)):
+            for j in range(0,len(matrix[i])):
                 label = QLabel()
                 if matrix[i][j] == 0 :
                     label.setPixmap(self.__sol)
@@ -145,9 +146,7 @@ class SokobanView(QMainWindow):
                     label.setPixmap(self.__grass)
                     self.__grid.addWidget(label, i, j)
 
-        #for i in range(len(matrix)):
-        #    for j in range(len(matrix[i])):
-        #        if i == self.__model.getCoordonneePerso()[0] and j == self.__model.getCoordonneePerso()[1]:
+
         label.setPixmap(self.__joueur)
         self.__grid.addWidget(label, self.__model.getCoordonneePerso()[0],self.__model.getCoordonneePerso()[1] )
 
@@ -155,3 +154,6 @@ class SokobanView(QMainWindow):
             labelCaisse = QLabel()
             labelCaisse.setPixmap(self.__caisse)
             self.__grid.addWidget(labelCaisse,element[0],element[1])
+
+    def caisseBouger(self):
+            self.coinSound.play()
