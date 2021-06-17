@@ -42,6 +42,8 @@ class SokobanController:
                             self.model.addPas()
                             self.model.update(self.model.getMatrix())
                             self.view.caisseBouger()
+                            if self.victoire():
+                                self.view.victoireSon()
                     print(self.model.getPas())
 
     def obtenirLaCaisseABouger(self, coo):
@@ -82,13 +84,14 @@ class SokobanController:
 
     def victoire(self):
         caisse = self.model.getCaisse()
-        print(caisse)
+        caisse.sort()
         trou = self.model.getTrou()
+        trou.sort()
         print(trou)
         for i in range(len(caisse)):
-            if caisse[i][0] != trou[i][0] or caisse[i][1] != trou[i][1]:
+            if caisse != trou:
+                print(caisse[0], caisse[1])
                 return False
-        self.view.victoireSon()
         return True
 
     def changeLevel1(self):

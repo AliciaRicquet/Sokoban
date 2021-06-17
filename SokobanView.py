@@ -54,6 +54,7 @@ class SokobanView(QMainWindow):
         self.__trou = None
         self.__sol = None
         self.__grass = None
+        self.__compteur = None
         self.caisse = QSound("son/bruitCaisse.wav")
         self.victoire = QSound("son/victoire.wav")
 
