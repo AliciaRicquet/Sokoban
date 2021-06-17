@@ -63,7 +63,10 @@ class SokobanController:
     def verifMurCaisse(self,dir):
         matrice = self.model.getMatrix()
         cooPerso = self.model.getCoordonneePerso()
-        if matrice[cooPerso[0] + (dir[0]+1)][cooPerso[1] + (dir[1]+1)] != 2:
+        if matrice[cooPerso[0] + (dir[0])+1][cooPerso[1] + (dir[1])+1] != 2:
+            for element in self.model.getCaisse():
+                if element[0] == cooPerso[0] + (dir[0])+1 and element[0] == cooPerso[1] + (dir[1]+1) :
+                    return False
             return True
         return False
 

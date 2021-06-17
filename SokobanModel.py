@@ -27,12 +27,12 @@ class SokobanModel:
                 [5, 2, 2, 2, 0, 0, 3, 2, 5],
                 [5, 2, 3, 2, 2, 0, 0, 2, 2],
                 [5, 2, 0, 2, 0, 3, 0, 0, 2],
-                [5, 2, 0, 0, 3, 0,0 , 3, 2],
+                [5, 2, 0, 0, 3, 0, 0, 3, 2],
                 [5, 2, 0, 0, 0, 3, 0, 0, 2],
                 [5, 2, 2, 2, 2, 2, 2, 2, 2]
             ]
             self.__coordonneePerso = [2, 3]
-            self.__caisses = [[2, 4], [3, 5], [4, 5], [6, 2], [6, 5], [6, 6],[4,6]]
+            self.__caisses = [[2, 4], [3, 5], [4, 5], [6, 2], [6, 5], [6, 6], [4, 6]]
 
         for x in range(len(self.__matrix)):
             for y in range(len(self.__matrix[0])):
@@ -55,7 +55,7 @@ class SokobanModel:
     def getCaisse(self):
         return self.__caisses
 
-    def modifierCaisse(self,indice,caisse):
+    def modifierCaisse(self, indice, caisse):
         self.__caisses[indice] = caisse
 
     def getTrou(self):
@@ -64,7 +64,7 @@ class SokobanModel:
     def getMatrix(self):
         return self.__matrix
 
-    def updateNiveau(self,level):
+    def updateNiveau(self, level):
         if level == 1:
             self.__matrix = [
                 [5, 5, 2, 2, 2, 5, 5, 5],
