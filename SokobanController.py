@@ -17,7 +17,6 @@ class SokobanController:
         self.model = model
 
     def movement(self, dir):
-        perso = [[self.model.getCoordonneePerso()[0] + dir[0]], [self.model.getCoordonneePerso()[1] + dir[1]]]
         if not self.victoire():
             if self.verifMurPerso(dir):
                 if self.verifCaisses(dir):
@@ -30,7 +29,6 @@ class SokobanController:
                 elif not self.verifCaisses(dir):
                     if self.verifMurCaisse(dir):
                         if self.verifCaisseCaisse(dir):
-                            print("caisse avant ", self.model.getCaisse())
                             indice = self.obtenirLaCaisseABouger(dir)
                             self.model.modifierCaisse(
                                 indice, [
@@ -41,7 +39,6 @@ class SokobanController:
                                 [self.model.getCoordonneePerso()[0] + dir[0],
                                  self.model.getCoordonneePerso()[1] + dir[1]]
                             )
-                            print("caisse après", self.model.getCaisse())
                             self.model.addPas()
                             self.model.update(self.model.getMatrix())
                     print(self.model.getPas())
