@@ -20,30 +20,32 @@ class SokobanController:
 
     def movement(self, dir):
         perso = [[self.model.getCoordonneePerso()[0] + dir[0]], [self.model.getCoordonneePerso()[1] + dir[1]]]
-        if self.verifMurPerso(dir):
-            if self.verifCaisses(dir):
-                self.model.setCoordoneePerso(
-                    [self.model.getCoordonneePerso()[0] + dir[0], self.model.getCoordonneePerso()[1] + dir[1]]
-                )
-                self.model.addPas()
-                self.__matrix = perso
-                self.model.update(self.model.getMatrix())
-            elif not self.verifCaisses(dir):
-                if self.verifMurCaisse(dir):
-                    print("caisse avant ", self.model.getCaisse())
-                    indice = self.obtenirLaCaisseABouger(dir)
-                    self.model.modifierCaisse(
-                        indice,[
-                            self.model.getCaisse()[indice][0] + dir[0], self.model.getCaisse()[indice][1] + dir[1]
-                        ])
+        if not self.victoire():
+            if self.verifMurPerso(dir):
+                if self.verifCaisses(dir):
                     self.model.setCoordoneePerso(
                         [self.model.getCoordonneePerso()[0] + dir[0], self.model.getCoordonneePerso()[1] + dir[1]]
                     )
-                    print("caisse après", self.model.getCaisse())
                     self.model.addPas()
                     self.__matrix = perso
                     self.model.update(self.model.getMatrix())
-                print(self.model.getPas())
+                elif not self.verifCaisses(dir):
+                    if self.verifMurCaisse(dir):
+                        if self.verifCaisseCaisse(dir):
+                            print("caisse avant ", self.model.getCaisse())
+                            indice = self.obtenirLaCaisseABouger(dir)
+                            self.model.modifierCaisse(
+                                indice,[
+                                    self.model.getCaisse()[indice][0] + dir[0], self.model.getCaisse()[indice][1] + dir[1]
+                                ])
+                            self.model.setCoordoneePerso(
+                                [self.model.getCoordonneePerso()[0] + dir[0], self.model.getCoordonneePerso()[1] + dir[1]]
+                            )
+                            print("caisse après", self.model.getCaisse())
+                            self.model.addPas()
+                            self.__matrix = perso
+                            self.model.update(self.model.getMatrix())
+                    print(self.model.getPas())
 
 
     def obtenirLaCaisseABouger(self,coo):
@@ -71,13 +73,22 @@ class SokobanController:
     def verifCaisseCaisse(self,dir):
         cooPerso = self.model.getCoordonneePerso()
         for element in self.model.getCaisse():
-            if element[0] == cooPerso[0] + (dir[0]) * 2 and element[0] == cooPerso[1] + (dir[1]) * 2:
+            if element[0] == cooPerso[0] + (dir[0]) * 2 and element[1] == cooPerso[1] + (dir[1]) * 2:
                 return False
         return True
+
     def verifCaisses(self, dir):
         cooPerso = self.model.getCoordonneePerso()
         cooCaisse = self.model.getCaisse()
         for elements in cooCaisse:
             if  elements[0] == cooPerso[0]+dir[0] and elements[1] == cooPerso[1]+dir[1]:
+                return False
+        return True
+
+    def victoire(self):
+        caisse = self.model.getCaisse()
+        trou = self.model.getTrou()
+        for i in range(len(caisse)):
+            if caisse[i][0] != trou[i][0] or caisse[i][1] != trou[i][1]:
                 return False
         return True
