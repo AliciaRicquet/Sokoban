@@ -89,3 +89,6 @@ class SokobanController:
             if caisse[i][0] != trou[i][0] or caisse[i][1] != trou[i][1]:
                 print(False)
         print(True)
+
+    def updateLevel(self,level):
+        self.model.updateNiveau(level)

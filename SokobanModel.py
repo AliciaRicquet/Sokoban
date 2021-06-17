@@ -33,7 +33,7 @@ class SokobanModel:
                 [5, 2, 2, 2, 2, 2, 2, 2, 2]
             ]
             self.__coordonneePerso = [2, 3]
-            self.__caisses = [[2, 4], [3, 5], [4, 5], [6, 2], [6, 5], [6, 6], [6, 4]]
+            self.__caisses = [[2, 4], [3, 5], [4, 5], [6, 2], [6, 5], [6, 4], [6, 6]]
 
         for x in range(len(self.__matrix)):
             for y in range(len(self.__matrix[0])):
@@ -93,6 +93,7 @@ class SokobanModel:
             ]
             self.__coordonneePerso = [2, 3]
             self.__caisses = [[2, 4], [3, 5], [4, 5], [6, 2], [6, 5], [6, 6], [4, 6]]
+        self.__view.update()
 
     def addPas(self):
         self.__step += 1

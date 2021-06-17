@@ -3,7 +3,7 @@ from random import randint
 from PyQt5.QtCore import Qt, QUrl, QDir
 from PyQt5.QtGui import QPixmap, QImage, QIcon
 from PyQt5.QtMultimedia import QMediaPlaylist, QMediaContent, QMediaPlayer
-from PyQt5.QtWidgets import QMainWindow, QGridLayout, QLabel, QWidget, QDesktopWidget
+from PyQt5.QtWidgets import QMainWindow, QGridLayout, QLabel, QWidget, QDesktopWidget, QMenu, QAction
 from PyQt5.Qt import Qt, QSound
 
 
@@ -96,6 +96,28 @@ class SokobanView(QMainWindow):
 
     def setController(self, controller):
         self.__controller = controller
+
+    def configMenu(self):
+        menuBar = self.menuBar()
+        gameMenu = QMenu("&Jeu", self)
+        menuBar.addMenu(gameMenu)
+
+        levelMenu = QMenu("&Level", self)
+        menuBar.addMenu(levelMenu)
+
+        restart = QAction(self)
+        restart.setText("&Restart")
+        gameMenu.addAction(restart)
+        level1 = QAction(self)
+        level1.setText("&Level 1")
+        level1.triggered.connect(self.__controller.updateLevel)
+        levelMenu.addAction(level1)
+        # restart.triggered.connect(self.restart)
+        # quitter le jeu
+        exitProgram = QAction(self)
+        exitProgram.setText("&Quit")
+        gameMenu.addAction(exitProgram)
+        exitProgram.triggered.connect(self.close)
 
     def setModel(self, model):
         # Attribution du model

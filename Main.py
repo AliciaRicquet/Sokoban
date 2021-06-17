@@ -15,6 +15,6 @@ view.setModel(model)
 view.setController(controller)
 controller.setModel(model)
 controller.setView(view)
-
+view.configMenu()
 view.setWindowTitle("Sokoban Empire des A2")
 sys.exit(app.exec_())
