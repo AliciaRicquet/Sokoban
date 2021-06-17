@@ -39,13 +39,13 @@ class SokobanView(QMainWindow):
         self.__labelGrid = []
         self.__window.setLayout(self.__grid)
         # configuration de la musique
-        self.playlist = QMediaPlaylist()
-        self.playlist.addMedia(QMediaContent(QUrl.fromLocalFile(
+        self.__playlist = QMediaPlaylist()
+        self.__playlist.addMedia(QMediaContent(QUrl.fromLocalFile(
             QDir.current().absoluteFilePath("son/musique1.mp3"))
         ))
-        self.playlist.setPlaybackMode(QMediaPlaylist.Loop)
-        self.musiqueSound = QMediaPlayer()
-        self.musiqueSound.setPlaylist(self.playlist)
+        self.__playlist.setPlaybackMode(QMediaPlaylist.Loop)
+        self.__musiqueSound = QMediaPlayer()
+        self.__musiqueSound.setPlaylist(self.__playlist)
         # choix texture
         self.__selectionTexture = randint(1, 5)
         self.__joueur = None
@@ -54,9 +54,9 @@ class SokobanView(QMainWindow):
         self.__trou = None
         self.__sol = None
         self.__grass = None
-        self.caisse = QSound("son/bruitCaisse.wav")
-        self.victoire = QSound("son/victoire.wav")
-        self.bonEndroit=QSound("son/objectif.wav")
+        self.__soundCaisse = QSound("son/bruitCaisse.wav")
+        self.__victoire = QSound("son/victoire.wav")
+        self.__bonEndroit=QSound("son/objectif.wav")
         self.__Nbpas = QVBoxLayout
 
     def confImage(self):
@@ -133,7 +133,7 @@ class SokobanView(QMainWindow):
         self.confImage()
         self.update()
 
-        self.musiqueSound.play()
+        self.__musiqueSound.play()
 
     def keyPressEvent(self, e):
         if e.key() == Qt.Key_Up:
@@ -187,10 +187,10 @@ class SokobanView(QMainWindow):
             self.__grid.addWidget(labelCaisse,element[0],element[1])
 
     def caisseBouger(self):
-        self.caisse.play()
+        self.__soundCaisse.play()
 
     def victoireSon(self):
-        self.victoire.play()
+        self.__victoire.play()
 
     def objectif(self):
-        self.bonEndroit.play()
+        self.__bonEndroit.play()
