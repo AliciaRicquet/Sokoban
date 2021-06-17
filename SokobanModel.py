@@ -6,6 +6,7 @@ class SokobanModel:
         self.__view = None
         self.__caisses = []
         self.__trou = []
+        self.__step = 0
         if level == 1:
             self.__matrix = [
                 [5, 5, 2, 2, 2, 5, 5, 5],
@@ -92,3 +93,5 @@ class SokobanModel:
             ]
             self.__coordonneePerso = [2, 3]
             self.__caisses = [[2, 4], [3, 5], [4, 5], [6, 2], [6, 5], [6, 6], [4, 6]]
+    def addPas(self):
+        self.__step += 1
