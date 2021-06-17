@@ -3,7 +3,7 @@ from random import randint
 from PyQt5.QtCore import Qt, QUrl, QDir
 from PyQt5.QtGui import QPixmap, QImage, QIcon
 from PyQt5.QtMultimedia import QMediaPlaylist, QMediaContent, QMediaPlayer
-from PyQt5.QtWidgets import QMainWindow, QGridLayout, QLabel, QWidget, QDesktopWidget, QMenu, QAction
+from PyQt5.QtWidgets import QMainWindow, QGridLayout, QLabel, QWidget, QDesktopWidget, QMenu, QAction, QVBoxLayout
 from PyQt5.Qt import Qt, QSound
 
 
@@ -57,6 +57,7 @@ class SokobanView(QMainWindow):
         self.caisse = QSound("son/bruitCaisse.wav")
         self.victoire = QSound("son/victoire.wav")
         self.bonEndroit=QSound("son/objectif.wav")
+        self.__Nbpas = QVBoxLayout
 
     def confImage(self):
         matrix = self.__model.getMatrix()
@@ -174,6 +175,11 @@ class SokobanView(QMainWindow):
 
         label.setPixmap(self.__joueur)
         self.__grid.addWidget(label, self.__model.getCoordonneePerso()[0],self.__model.getCoordonneePerso()[1] )
+
+
+        self.__Nbpas = QLabel("Nombres de pas : " + str(self.__model.getPas()))
+        self.__grid.addWidget(self.__Nbpas)
+
 
         for element in self.__model.getCaisse():
             labelCaisse = QLabel()
