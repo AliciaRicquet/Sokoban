@@ -38,7 +38,7 @@ class SokobanModel:
         for x in range(len(self.__matrix)):
             for y in range(len(self.__matrix[0])):
                 if self.__matrix[x][y] == 3:
-                    self.__trou.append((x, y))
+                    self.__trou.append([x, y])
 
     def getCoordonneePerso(self):
         return self.__coordonneePerso
@@ -83,11 +83,11 @@ class SokobanModel:
             self.__matrix = [
                 [5, 5, 5, 2, 2, 2, 2, 2, 5],
                 [5, 2, 2, 2, 0, 0, 0, 2, 5],
-                [5, 2, 3, 0, 4, 0, 0, 2, 5],
-                [5, 2, 2, 2, 0, 4, 3, 2, 5],
-                [5, 2, 3, 2, 2, 4, 0, 2, 2],
+                [5, 2, 3, 0, 0, 0, 0, 2, 5],
+                [5, 2, 2, 2, 0, 0, 3, 2, 5],
+                [5, 2, 3, 2, 2, 0, 0, 2, 2],
                 [5, 2, 0, 2, 0, 3, 0, 0, 2],
-                [5, 2, 4, 0, 3, 4, 4, 3, 2],
+                [5, 2, 0, 0, 3, 0, 0, 3, 2],
                 [5, 2, 0, 0, 0, 3, 0, 0, 2],
                 [5, 2, 2, 2, 2, 2, 2, 2, 2]
             ]
