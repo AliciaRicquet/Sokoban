@@ -134,6 +134,8 @@ class SokobanView(QMainWindow):
         self.update()
 
         self.__musiqueSound.play()
+        self.__Nbpas = QLabel("Nombres de pas : /n" + str(self.__model.getPas()))
+        self.__grid.addWidget(self.__Nbpas, 8, 8)
 
     def keyPressEvent(self, e):
         if e.key() == Qt.Key_Up:
@@ -171,14 +173,17 @@ class SokobanView(QMainWindow):
                 elif matrix[i][j] == 5:
                     label.setPixmap(self.__grass)
                     self.__grid.addWidget(label, i, j)
-
+        self.__Nbpas = QLabel()
+        self.__Nbpas.setPixmap(self.__grass)
+        text = QLabel("Nombres de pas : /n" + str(self.__model.getPas()))
+        self.__grid.addWidget(self.__Nbpas, 8, 8)
 
         label.setPixmap(self.__joueur)
         self.__grid.addWidget(label, self.__model.getCoordonneePerso()[0],self.__model.getCoordonneePerso()[1] )
 
 
-        self.__Nbpas = QLabel("Nombres de pas : " + str(self.__model.getPas()))
-        self.__grid.addWidget(self.__Nbpas)
+
+
 
 
         for element in self.__model.getCaisse():
