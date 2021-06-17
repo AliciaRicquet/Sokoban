@@ -30,6 +30,7 @@ class SokobanController:
                     if self.verifMurCaisse(dir):
                         if self.verifCaisseCaisse(dir):
                             indice = self.obtenirLaCaisseABouger(dir)
+
                             self.model.modifierCaisse(
                                 indice, [
                                     self.model.getCaisse()[indice][0] + dir[0],
@@ -44,8 +45,15 @@ class SokobanController:
                             self.view.caisseBouger()
                             if self.victoire():
                                 self.view.victoireSon()
+                            self.caisseAObjectif(indice)
                     print(self.model.getPas())
-
+    def caisseAObjectif(self,i):
+        caisse = self.model.getCaisse()[i]
+        trou = self.model.getTrou()
+        for j in trou:
+            if caisse == j:
+                self.view.objectif()
+    
     def obtenirLaCaisseABouger(self, coo):
         caisse = self.model.getCaisse()
         perso = self.model.getCoordonneePerso()

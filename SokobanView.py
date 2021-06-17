@@ -57,7 +57,7 @@ class SokobanView(QMainWindow):
         self.__compteur = None
         self.caisse = QSound("son/bruitCaisse.wav")
         self.victoire = QSound("son/victoire.wav")
-        self.bonEndroit=QSound("son/objectif.wav")
+        self.bonEndroit = QSound("son/objectif.wav")
 
     def confImage(self):
         matrix = self.__model.getMatrix()
@@ -188,4 +188,4 @@ class SokobanView(QMainWindow):
         self.victoire.play()
 
     def objectif(self):
-        self.objectif.play()
+        self.bonEndroit.play()
