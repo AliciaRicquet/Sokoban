@@ -106,3 +106,6 @@ class SokobanModel:
 
     def getPas(self):
         return self.__step
+
+    def resetPas(self):
+        self.__step = 0

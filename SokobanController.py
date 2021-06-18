@@ -104,6 +104,8 @@ class SokobanController:
 
     def changeLevel1(self):
         self.__model.updateNiveau(1)
+        self.__model.resetPas()
 
     def changeLevel2(self):
         self.__model.updateNiveau(2)
+        self.__model.resetPas()
