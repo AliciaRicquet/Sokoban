@@ -197,23 +197,21 @@ class SokobanView(QMainWindow):
     def update(self):
         matrix = self.__model.getMatrix()
         # configuration et choix des textures
-        """
+
         for i in range(0, len(matrix)):
             for j in range(0, len(matrix[i])):
-                label = QLabel()
                 if matrix[i][j] == 0:
-                    label.setPixmap(self.__sol)
-                    self.__grid.addWidget(label, i, j)
+                    self.__labelGrid[i][j].clear()
+                    self.__labelGrid[i][j].setPixmap(self.__sol)
                 elif matrix[i][j] == 2:
-                    label.setPixmap(self.__wall)
-                    self.__grid.addWidget(label, i, j)
+                    self.__labelGrid[i][j].clear()
+                    self.__labelGrid[i][j].setPixmap(self.__wall)
                 elif matrix[i][j] == 3:
-                    label.setPixmap(self.__trou)
-                    self.__grid.addWidget(label, i, j)
+                    self.__labelGrid[i][j].clear()
+                    self.__labelGrid[i][j].setPixmap(self.__trou)
                 elif matrix[i][j] == 5:
+                    self.__labelGrid[i][j].clear()
                     self.__labelGrid[i][j].setPixmap(self.__grass)
-                    self.__grid.addWidget(label, i, j)
-        """
         # self.__text.clear()
         # self.__text = QLabel("Nombres de pas : /n" + str(self.__model.getPas()))
         # self.__grid.addWidget(self.__text, 8, 8)
@@ -223,7 +221,8 @@ class SokobanView(QMainWindow):
                               self.__model.getCoordonneePerso()[1])
 
         tab = self.__model.getCaisse()
-        for j in range(len(self.__gridCaisse)):
+
+        for j in range(len(tab)):
             self.__gridCaisse[j].clear()
             self.__gridCaisse[j].setPixmap(self.__caisse)
             self.__grid.addWidget(self.__gridCaisse[j], tab[j][0], tab[j][1])
@@ -236,3 +235,13 @@ class SokobanView(QMainWindow):
 
     def objectif(self):
         self.__bonEndroit.play()
+
+    def resetGridCaisse(self):
+        for element in self.__gridCaisse:
+            element.clear()
+        self.__gridCaisse = []
+        for element in self.__model.getCaisse():
+            labelCaisse = QLabel()
+            labelCaisse.setPixmap(self.__caisse)
+            self.__grid.addWidget(labelCaisse, element[0], element[1])
+            self.__gridCaisse.append(labelCaisse)
