@@ -60,8 +60,6 @@ class SokobanView(QMainWindow):
         self.__victoire = QSound("son/victoire.wav")
         self.__bonEndroit = QSound("son/objectif.wav")
         self.__Nbpas = QVBoxLayout
-        self.__gridPlayer = None
-        self.__gridCaisse = []
 
     def confImage(self):
         matrix = self.__model.getMatrix()
@@ -100,7 +98,6 @@ class SokobanView(QMainWindow):
         self.__trou = QPixmap(imageTrou.scaled(w, h))
         self.__sol = QPixmap(imageSol.scaled(w, h))
         self.__grass = QPixmap(imageGrass.scaled(w, h))
-        self.__text = None
 
     def setController(self, controller):
         self.__controller = controller
@@ -136,47 +133,11 @@ class SokobanView(QMainWindow):
         # configuration de la taille de la fenêtre
         self.setFixedSize(len(matrix[0] * 100), len(matrix * 100))
         self.confImage()
+        self.update()
 
         self.__musiqueSound.play()
-        # self.__Nbpas = QLabel("Nombres de pas : \n" + str(self.__model.getPas()))
-        # self.__grid.addWidget(self.__Nbpas, 8, 8)
-        for i in range(0, len(matrix)):
-            tmp = []
-            for j in range(0, len(matrix[i])):
-                label = QLabel()
-                if matrix[i][j] == 0:
-                    label.setPixmap(self.__sol)
-                    self.__grid.addWidget(label, i, j)
-                    tmp.append(label)
-                elif matrix[i][j] == 2:
-                    label.setPixmap(self.__wall)
-                    self.__grid.addWidget(label, i, j)
-                    tmp.append(label)
-
-                elif matrix[i][j] == 3:
-                    label.setPixmap(self.__trou)
-                    self.__grid.addWidget(label, i, j)
-                    tmp.append(label)
-
-                elif matrix[i][j] == 5:
-                    label.setPixmap(self.__grass)
-                    self.__grid.addWidget(label, i, j)
-                    tmp.append(label)
-            self.__labelGrid.append(tmp)
-
-        self.__text = QLabel("Nombres de pas : /n" + str(self.__model.getPas()))
-        self.__grid.addWidget(self.__text, 8, 8)
-
-        label.setPixmap(self.__joueur)
-        self.__grid.addWidget(label, self.__model.getCoordonneePerso()[0], self.__model.getCoordonneePerso()[1])
-        self.__gridPlayer = label
-
-        for element in self.__model.getCaisse():
-            labelCaisse = QLabel()
-            labelCaisse.setPixmap(self.__caisse)
-            self.__grid.addWidget(labelCaisse, element[0], element[1])
-            self.__gridCaisse.append(labelCaisse)
-        self.update()
+        self.__Nbpas = QLabel("Nombres de pas : \n" + str(self.__model.getPas()))
+        self.__grid.addWidget(self.__Nbpas, 8, 8)
 
     def keyPressEvent(self, e):
         if e.key() == Qt.Key_Up:
@@ -197,7 +158,7 @@ class SokobanView(QMainWindow):
     def update(self):
         matrix = self.__model.getMatrix()
         # configuration et choix des textures
-        """
+
         for i in range(0, len(matrix)):
             for j in range(0, len(matrix[i])):
                 label = QLabel()
@@ -211,22 +172,20 @@ class SokobanView(QMainWindow):
                     label.setPixmap(self.__trou)
                     self.__grid.addWidget(label, i, j)
                 elif matrix[i][j] == 5:
-                    self.__labelGrid[i][j].setPixmap(self.__grass)
+                    label.setPixmap(self.__grass)
                     self.__grid.addWidget(label, i, j)
-        """
-        # self.__text.clear()
-        # self.__text = QLabel("Nombres de pas : /n" + str(self.__model.getPas()))
-        # self.__grid.addWidget(self.__text, 8, 8)
-        self.__gridPlayer.clear()
-        self.__gridPlayer.setPixmap(self.__joueur)
-        self.__grid.addWidget(self.__gridPlayer, self.__model.getCoordonneePerso()[0],
-                              self.__model.getCoordonneePerso()[1])
+        self.__Nbpas = QLabel()
+        self.__Nbpas.setPixmap(self.__grass)
+        text = QLabel("Nombres de pas : /n" + str(self.__model.getPas()))
+        self.__grid.addWidget(self.__Nbpas, 8, 8)
 
-        tab = self.__model.getCaisse()
-        for j in range(len(self.__gridCaisse)):
-            self.__gridCaisse[j].clear()
-            self.__gridCaisse[j].setPixmap(self.__caisse)
-            self.__grid.addWidget(self.__gridCaisse[j], tab[j][0], tab[j][1])
+        label.setPixmap(self.__joueur)
+        self.__grid.addWidget(label, self.__model.getCoordonneePerso()[0], self.__model.getCoordonneePerso()[1])
+
+        for element in self.__model.getCaisse():
+            labelCaisse = QLabel()
+            labelCaisse.setPixmap(self.__caisse)
+            self.__grid.addWidget(labelCaisse, element[0], element[1])
 
     def caisseBouger(self):
         self.__soundCaisse.play()
