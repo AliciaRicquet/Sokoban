@@ -32,12 +32,14 @@ class SokobanView(QMainWindow):
         self.setCentralWidget(self.__window)
         self.setWindowIcon(QIcon("sprites/mur3.png"))
         size_ecran = QDesktopWidget().screenGeometry()
-        self.move((size_ecran.width() - self.geometry().width()) / 3, (size_ecran.height() - self.geometry().height())/10)
+        self.move((size_ecran.width() - self.geometry().width()) / 3,
+                  (size_ecran.height() - self.geometry().height()) / 10)
         # Declaration du grid Layout
         self.__grid = QGridLayout()
         self.__grid.setSpacing(0)
         self.__labelGrid = []
         self.__window.setLayout(self.__grid)
+
         # configuration de la musique
         self.__playlist = QMediaPlaylist()
         self.__playlist.addMedia(QMediaContent(QUrl.fromLocalFile(
@@ -56,7 +58,7 @@ class SokobanView(QMainWindow):
         self.__grass = None
         self.__soundCaisse = QSound("son/bruitCaisse.wav")
         self.__victoire = QSound("son/victoire.wav")
-        self.__bonEndroit=QSound("son/objectif.wav")
+        self.__bonEndroit = QSound("son/objectif.wav")
         self.__Nbpas = QVBoxLayout
 
     def confImage(self):
@@ -134,7 +136,7 @@ class SokobanView(QMainWindow):
         self.update()
 
         self.__musiqueSound.play()
-        self.__Nbpas = QLabel("Nombres de pas : /n" + str(self.__model.getPas()))
+        self.__Nbpas = QLabel("Nombres de pas : \n" + str(self.__model.getPas()))
         self.__grid.addWidget(self.__Nbpas, 8, 8)
 
     def keyPressEvent(self, e):
@@ -142,7 +144,7 @@ class SokobanView(QMainWindow):
             self.__controller.movement((-1, 0))
 
         elif e.key() == Qt.Key_Down:
-            self.__controller.movement((1,0))
+            self.__controller.movement((1, 0))
 
         elif e.key() == Qt.Key_Right:
             self.__controller.movement((0, 1))
@@ -157,11 +159,10 @@ class SokobanView(QMainWindow):
         matrix = self.__model.getMatrix()
         # configuration et choix des textures
 
-
-        for i in range(0,len(matrix)):
-            for j in range(0,len(matrix[i])):
+        for i in range(0, len(matrix)):
+            for j in range(0, len(matrix[i])):
                 label = QLabel()
-                if matrix[i][j] == 0 :
+                if matrix[i][j] == 0:
                     label.setPixmap(self.__sol)
                     self.__grid.addWidget(label, i, j)
                 elif matrix[i][j] == 2:
@@ -179,17 +180,12 @@ class SokobanView(QMainWindow):
         self.__grid.addWidget(self.__Nbpas, 8, 8)
 
         label.setPixmap(self.__joueur)
-        self.__grid.addWidget(label, self.__model.getCoordonneePerso()[0],self.__model.getCoordonneePerso()[1] )
-
-
-
-
-
+        self.__grid.addWidget(label, self.__model.getCoordonneePerso()[0], self.__model.getCoordonneePerso()[1])
 
         for element in self.__model.getCaisse():
             labelCaisse = QLabel()
             labelCaisse.setPixmap(self.__caisse)
-            self.__grid.addWidget(labelCaisse,element[0],element[1])
+            self.__grid.addWidget(labelCaisse, element[0], element[1])
 
     def caisseBouger(self):
         self.__soundCaisse.play()
