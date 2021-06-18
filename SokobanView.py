@@ -50,6 +50,7 @@ class SokobanView(QMainWindow):
         self.__musiqueSound.setPlaylist(self.__playlist)
         # choix texture
         self.__selectionTexture = randint(1, 5)
+        self.__selectionCaisse = randint(1,5)
         self.__joueur = None
         self.__wall = None
         self.__caisse = None
@@ -72,24 +73,34 @@ class SokobanView(QMainWindow):
         imageSol = QImage("sprites/ground_interior.png")
         imageGrass = QImage("sprites/grass.png")
         if self.__selectionTexture == 1:
-            imageCaisse = QImage("./sprites/caisse_valide1.png", 'png')
             imageMur = QImage("./sprites/mur1.png", 'png')
 
         elif self.__selectionTexture == 2:
-            imageCaisse = QImage("./sprites/caisse_valide2.png", 'png')
             imageMur = QImage("./sprites/mur2.png", 'png')
 
         elif self.__selectionTexture == 3:
-            imageCaisse = QImage("./sprites/caisse_valide3.png", 'png')
             imageMur = QImage("./sprites/mur3.png", 'png')
         elif self.__selectionTexture == 4:
-            imageCaisse = QImage("./sprites/caisse_valide4.png", 'png')
             imageMur = QImage("./sprites/mur4.png", 'png')
 
         elif self.__selectionTexture == 5:
-            imageCaisse = QImage("./sprites/caisse_valide5.png", 'png')
+
             imageMur = QImage("./sprites/mur5.png", 'png')
 
+        if self.__selectionCaisse == 1:
+            imageCaisse = QImage("./sprites/caisse_valide1.png", 'png')
+
+        elif self.__selectionCaisse  == 2:
+            imageCaisse = QImage("./sprites/caisse_valide2.png", 'png')
+
+
+        elif self.__selectionCaisse  == 3:
+            imageCaisse = QImage("./sprites/caisse_valide3.png", 'png')
+        elif self.__selectionCaisse  == 4:
+            imageCaisse = QImage("./sprites/caisse_valide4.png", 'png')
+
+        elif self.__selectionCaisse  == 5:
+            imageCaisse = QImage("./sprites/caisse_valide5.png", 'png')
         # attribution de la texture au joueur au mur et a la caisse
         w = self.width() / len(matrix)
         h = self.height() / len(matrix[0])
