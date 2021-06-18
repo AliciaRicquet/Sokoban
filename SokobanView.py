@@ -42,13 +42,15 @@ class SokobanView(QMainWindow):
 
         # configuration de la musique
         self.__playlist = QMediaPlaylist()
+
         self.__playlist.addMedia(QMediaContent(QUrl.fromLocalFile(
             QDir.current().absoluteFilePath("son/musique1.mp3"))
         ))
+        
         self.__playlist.setPlaybackMode(QMediaPlaylist.Loop)
         self.__musiqueSound = QMediaPlayer()
         self.__musiqueSound.setPlaylist(self.__playlist)
-        # choix texture
+            # choix texture
         self.__selectionTexture = randint(1, 5)
         self.__selectionCaisse = randint(1,5)
         self.__joueur = None
@@ -131,7 +133,13 @@ class SokobanView(QMainWindow):
         level2 = QAction(self)
         level2.setText("&Level 2")
         level2.triggered.connect(self.__controller.changeLevel2)
+
         levelMenu.addAction(level2)
+        soundMenu = QMenu("Son", self)
+        menuBar.addMenu(soundMenu)
+        couperS = QAction(self)
+        couperS.setText("couper le son")
+        soundMenu.addAction(couperS)
         # restart.triggered.connect(self.restart)
         # quitter le jeu
         exitProgram = QAction(self)
@@ -256,3 +264,5 @@ class SokobanView(QMainWindow):
             labelCaisse.setPixmap(self.__caisse)
             self.__grid.addWidget(labelCaisse, element[0], element[1])
             self.__gridCaisse.append(labelCaisse)
+
+    #def couperSon(self):

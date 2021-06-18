@@ -17,6 +17,7 @@ class SokobanController:
         self.__model = model
 
     def movement(self, dir):
+        print(self.__model.getMatrix())
         if not self.victoire():
             if self.verifMurPerso(dir):
                 if self.verifCaisses(dir):
